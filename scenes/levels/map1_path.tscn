@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://yqokpbwbuvas"]
+
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_txlid"]
+
+[sub_resource type="Curve2D" id="Curve2D_471xd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 19200002, 12800001, -6439006.5, 12354.469, 6439006.5, -12354.469, 32000002, 12800001, 0, 0, 0, 0, 38400004, 19200002, -26005.5, -6279646.5, 26005.5, 6279646.5, 38400004, 44800004, 0, 0, 0, 0, 44800004, 51200004, 0, 0, 6439006.5, -94999.09, 51200004, 51200004, 0, 0, 0, 0, 57600004, 44800004, 94994.5, 6318002, -94994.5, -6318002, 57600004, 19200002, 0, 0, 0, 0, 64000004, 12800001, -6405001.5, 39006, 6405001.5, -39006, 70400010, 12800001, 0, 0, 0, 0, 76800010, 19200002, 0, 0, -94999.09, 6439006.5, 76800010, 44800004, 0, 0, 0, 0, 83200010, 51200004, 0, 0, 0, 0, 96000010, 51200004)
+}
+point_count = 14
+
+[node name="Node2D" type="Node2D" unique_id=837977112]
+scale = Vector2(1e-05, 1e-05)
+
+[node name="Background" type="Sprite2D" parent="." unique_id=880776226]
+position = Vector2(57599968, 32399968)
+scale = Vector2(900000.44, 506250.53)
+texture = ExtResource("1_txlid")
+
+[node name="Path2D" type="Path2D" parent="." unique_id=1852468965]
+curve = SubResource("Curve2D_471xd")
