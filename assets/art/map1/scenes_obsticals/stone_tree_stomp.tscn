@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bmlhnq5ywy6te"]
+
+[ext_resource type="Texture2D" uid="uid://cv4nvshu6pyq5" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_prop - Tree Large.png" id="1_cc3an"]
+[ext_resource type="Texture2D" uid="uid://bu0npi2rp4y2r" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Tree Stump Tall.png" id="2_evfjx"]
+[ext_resource type="Texture2D" uid="uid://bxw5jqy61mwj4" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Rock 03.png" id="3_s4kem"]
+[ext_resource type="Texture2D" uid="uid://7gvso0vobsbw" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Tree Medium.png" id="4_b8c7i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vcnjh"]
+radius = 28.0
+
+[node name="StoneTreeStomp" type="Sprite2D" unique_id=525237436]
+scale = Vector2(2, 2)
+texture = ExtResource("1_cc3an")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1364048765]
+position = Vector2(9.5, 23)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_evfjx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1379326702]
+position = Vector2(11, 26)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_s4kem")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=915215588]
+position = Vector2(-13, 22.5)
+texture = ExtResource("4_b8c7i")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1190985902]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1119828433]
+position = Vector2(-5, 11)
+shape = SubResource("CircleShape2D_vcnjh")

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://8kambbd78vr2"]
+
+[ext_resource type="Texture2D" uid="uid://cv4nvshu6pyq5" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_prop - Tree Large.png" id="1_6kpk6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5l5fm"]
+radius = 13.5
+
+[node name="Tree1" type="Sprite2D" unique_id=293032932]
+scale = Vector2(2, 2)
+texture = ExtResource("1_6kpk6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1364461168]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1807527599]
+position = Vector2(0.5, -2)
+shape = SubResource("CapsuleShape2D_5l5fm")

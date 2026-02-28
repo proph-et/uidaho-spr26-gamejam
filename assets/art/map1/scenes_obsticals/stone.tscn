@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://o7pb5pdensoo"]
+
+[ext_resource type="Texture2D" uid="uid://bxw5jqy61mwj4" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Rock 03.png" id="1_8oqql"]
+[ext_resource type="Texture2D" uid="uid://dj4sv8qwbglyp" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Rock 05.png" id="2_ytiso"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0qno3"]
+radius = 6.588236
+height = 20.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wabsa"]
+size = Vector2(24, 12.666667)
+
+[node name="Stone" type="Sprite2D" unique_id=1317266275]
+position = Vector2(5, 10)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_8oqql")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=409782400]
+position = Vector2(23, -12)
+scale = Vector2(1.0625, 1)
+texture = ExtResource("2_ytiso")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1126239707]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1390649878]
+position = Vector2(3.4509804, -0.6666665)
+shape = SubResource("CapsuleShape2D_0qno3")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=407391838]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2070834358]
+position = Vector2(2, -0.3333335)
+shape = SubResource("RectangleShape2D_wabsa")

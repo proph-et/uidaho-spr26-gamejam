@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dcpofyyf07cd1"]
+
+[ext_resource type="Texture2D" uid="uid://roc4qehk8uw3" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Rock 04.png" id="1_2uew1"]
+[ext_resource type="Texture2D" uid="uid://dlf1xdq1sepb4" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Tree Stump Short.png" id="2_1rfpl"]
+[ext_resource type="Texture2D" uid="uid://dj4sv8qwbglyp" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Rock 05.png" id="3_thdip"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3t22y"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qg2yv"]
+radius = 11.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yejo"]
+height = 26.0
+
+[node name="StoneStomp" type="Sprite2D" unique_id=1712939474]
+texture = ExtResource("1_2uew1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1530591545]
+position = Vector2(9, 28)
+texture = ExtResource("2_1rfpl")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1657608142]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1510536510]
+position = Vector2(2, -4)
+shape = SubResource("CircleShape2D_3t22y")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1863335387]
+position = Vector2(-21, 16)
+texture = ExtResource("3_thdip")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D2" unique_id=362936362]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/Area2D" unique_id=856823340]
+position = Vector2(5, -1)
+shape = SubResource("CircleShape2D_qg2yv")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=39936725]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1745856325]
+position = Vector2(4, 2)
+shape = SubResource("CapsuleShape2D_2yejo")
