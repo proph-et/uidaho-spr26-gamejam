@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bm0md6tldoecq"]
+
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_eidq4"]
+[ext_resource type="Script" uid="uid://bkaj3ou1xmgvf" path="res://scripts/towers/tower_parent.gd" id="1_g4jmr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g4jmr"]
+radius = 14.26556
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsqs5"]
+radius = 50.342876
+
+[node name="basic_tower" type="Node2D" unique_id=89670105]
+script = ExtResource("1_g4jmr")
+
+[node name="TowerArea" type="Area2D" parent="." unique_id=396739133]
+
+[node name="TowerCollision" type="CollisionShape2D" parent="TowerArea" unique_id=1998344648]
+scale = Vector2(5.965, 5.965)
+shape = SubResource("CircleShape2D_g4jmr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1647727574]
+texture = ExtResource("1_eidq4")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=876894526]
+unique_name_in_owner = true
+
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea" unique_id=1456390316]
+unique_name_in_owner = true
+scale = Vector2(10, 10)
+shape = SubResource("CircleShape2D_fsqs5")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
