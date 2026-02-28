@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://de2dmebjavyto"]
+[gd_scene format=3 uid="uid://c8mlpphnlixka"]
 
-[ext_resource type="Script" uid="uid://dtwa1dpb8rj4r" path="res://scripts/enemies/enemy.gd" id="1_1ksin"]
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_1ksin"]
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_tweey"]
-[ext_resource type="Script" uid="uid://chbp8evyfr0yy" path="res://scripts/enemies/character_body_2d.gd" id="2_gumeb"]
+[ext_resource type="Script" path="res://scripts/enemies/character_body_2d.gd" id="2_gumeb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ksin"]
 size = Vector2(209, 187)
@@ -11,7 +11,7 @@ size = Vector2(209, 187)
 loop = false
 script = ExtResource("1_1ksin")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1752081654]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1752081654 groups=["enemy"]]
 script = ExtResource("2_gumeb")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1481894097]

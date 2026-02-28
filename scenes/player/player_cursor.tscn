@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dh0cskp88pxgt"]
+
+[ext_resource type="Script" uid="uid://ddccamkdoyqys" path="res://scripts/player/player_cursor.gd" id="1_xhdnr"]
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_xqckg"]
+
+[node name="PlayerCursor" type="Node2D" unique_id=1717595345]
+script = ExtResource("1_xhdnr")
+screen_margin = 16.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=608755929]
+texture = ExtResource("1_xqckg")
+region_enabled = true
+region_rect = Rect2(33, 56, 19, 19)

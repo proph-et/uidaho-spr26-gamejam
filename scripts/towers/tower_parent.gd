@@ -36,6 +36,7 @@ func attack() -> void:
   if selected_targets.is_empty():
     return
 
+  print("Attacking ", selected_targets.size(), " targets.")
   can_attack = false
   attack_timer.start()
   _perform_attack(selected_targets)
@@ -100,8 +101,25 @@ func _prune_invalid_targets() -> void:
   )
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
+  print("Body entered attack area: ", body.name)
   if body.is_in_group("enemy") and body not in targets:
     targets.append(body)
 
 func _on_attack_area_body_exited(body: Node2D) -> void:
   targets.erase(body)
+
+
+var busy_by_player: int = -1
+
+func can_interact(player_id: int) -> bool:
+    return busy_by_player == -1 or busy_by_player == player_id
+
+func interact(player_id: int) -> void:
+    if not can_interact(player_id):
+        return
+    busy_by_player = player_id
+    open_upgrade_menu_for(player_id)
+
+func open_upgrade_menu_for(player_id: int) -> void:
+    # Show player-owned tower UI
+    pass

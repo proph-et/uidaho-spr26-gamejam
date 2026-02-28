@@ -11,6 +11,7 @@ anchor_right = 0.0
 offset_left = 0.0
 offset_right = 120.0
 grow_horizontal = 1
+shop_player_id = 1
 
 [node name="Player_2_Shop" parent="." unique_id=299177673 instance=ExtResource("1_l7ijq")]
 anchors_preset = 6
@@ -19,3 +20,4 @@ anchor_right = 1.0
 offset_left = -120.0
 offset_right = 0.0
 grow_horizontal = 0
+shop_player_id = 2
