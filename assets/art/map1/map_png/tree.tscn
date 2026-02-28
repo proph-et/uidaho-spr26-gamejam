@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://be2nm45k5qck6"]
+
+[ext_resource type="Texture2D" path="res://assets/art/map1/map_png/Top-Down_Simple_Summer_Prop_-_Bushes_Medium.png" id="1_7j13w"]
+
+[node name="Tree" type="Sprite2D" unique_id=1853453639]
+texture_filter = 1
+texture = ExtResource("1_7j13w")

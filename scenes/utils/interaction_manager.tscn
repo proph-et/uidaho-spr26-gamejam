@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1imbesqsh051"]
 
-[ext_resource type="Script" uid="uid://bx4404c4cg2h7" path="res://scripts/player/interaction_manager.gd" id="1_m71jd"]
+[ext_resource type="Script" path="res://scripts/utils/interaction_manager.gd" id="1_m71jd"]
 
 [node name="InteractionManager" type="Node" unique_id=272034582]
 script = ExtResource("1_m71jd")
