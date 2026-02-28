@@ -14,13 +14,16 @@ enum TargettingMode {
     _update_attack_collision_size()
 @export var cost: int = 50
 @export var target_mode: TargettingMode = TargettingMode.FURTHEST
-@export var selection_ring_color: Color = Color(0.3, 1.0, 0.5, 0.9)
+@export var selection_ring_color_p1: Color = Color(0.3, 1.0, 0.5, 0.9)
+@export var selection_ring_color_p2: Color = Color(0.3, 0.7, 1.0, 0.9)
 @export var selection_ring_width: float = 2.0
 
 var can_attack: bool = true
 var attack_timer: Timer
 var targets: Array[Node2D] = []
-var selection_ring: Line2D
+var selection_rings_by_player: Dictionary = {}
+
+static var selected_tower_by_player: Dictionary = {}
 
 @onready var attack_collision: CollisionShape2D = %AttackCollision
 @onready var attack_area: Area2D = %AttackArea
@@ -32,7 +35,15 @@ func _ready() -> void:
     tower_area.add_to_group("tower_select_area")
   _setup_attack_timer()
   _update_attack_collision_size()
-  _ensure_selection_ring()
+
+func _exit_tree() -> void:
+  var to_clear: Array[int] = []
+  for key in selected_tower_by_player.keys():
+    var player_id: int = int(key)
+    if selected_tower_by_player[player_id] == self:
+      to_clear.append(player_id)
+  for player_id in to_clear:
+    selected_tower_by_player.erase(player_id)
 
 func _process(_delta: float) -> void:
   _prune_invalid_targets()
@@ -102,7 +113,7 @@ func _update_attack_collision_size() -> void:
   var circle := attack_collision.shape as CircleShape2D
   if circle:
     circle.radius = attack_range
-  _update_selection_ring()
+  _update_all_selection_rings()
 
 func _prune_invalid_targets() -> void:
   targets = targets.filter(func(target: Node2D) -> bool:
@@ -117,51 +128,72 @@ func _on_attack_area_body_entered(body: Node2D) -> void:
 func _on_attack_area_body_exited(body: Node2D) -> void:
   targets.erase(body)
 
-
-var busy_by_player: int = -1
-
 func can_interact(player_id: int) -> bool:
-    return busy_by_player == -1 or busy_by_player == player_id
+  for key in selected_tower_by_player.keys():
+    var other_player_id: int = int(key)
+    if other_player_id == player_id:
+      continue
+    if selected_tower_by_player[other_player_id] == self:
+      return false
+  return true
 
 func interact(player_id: int) -> void:
     if not can_interact(player_id):
         return
     _select_for_player(player_id)
-    busy_by_player = player_id
 
 func hide_selection_range() -> void:
-  if selection_ring != null and is_instance_valid(selection_ring):
-    selection_ring.visible = false
+  for key in selection_rings_by_player.keys():
+    var player_id: int = int(key)
+    hide_selection_range_for_player(player_id)
 
-func _select_for_player(_player_id: int) -> void:
-  for node in get_tree().get_nodes_in_group("tower"):
-    if node == self:
-      continue
-    if node.has_method("hide_selection_range"):
-      node.hide_selection_range()
-  if selection_ring != null and is_instance_valid(selection_ring):
-    selection_ring.visible = true
+func hide_selection_range_for_player(player_id: int) -> void:
+  var ring: Line2D = selection_rings_by_player.get(player_id) as Line2D
+  if ring != null and is_instance_valid(ring):
+    ring.visible = false
+  if selected_tower_by_player.get(player_id) == self:
+    selected_tower_by_player.erase(player_id)
 
-func _ensure_selection_ring() -> void:
-  if selection_ring != null and is_instance_valid(selection_ring):
+func _select_for_player(player_id: int) -> void:
+  var previous: Variant = selected_tower_by_player.get(player_id)
+  if previous != null and previous != self and is_instance_valid(previous):
+    if previous.has_method("hide_selection_range_for_player"):
+      previous.hide_selection_range_for_player(player_id)
+
+  var ring := _ensure_selection_ring_for_player(player_id)
+  if ring != null and is_instance_valid(ring):
+    ring.visible = true
+  selected_tower_by_player[player_id] = self
+
+func _ensure_selection_ring_for_player(player_id: int) -> Line2D:
+  var existing: Line2D = selection_rings_by_player.get(player_id) as Line2D
+  if existing != null and is_instance_valid(existing):
+    return existing
+
+  var ring := Line2D.new()
+  ring.name = "SelectionRangeP%d" % player_id
+  ring.width = selection_ring_width
+  ring.default_color = _selection_color_for_player(player_id)
+  ring.closed = true
+  ring.antialiased = true
+  ring.z_index = 1000 + player_id
+  ring.visible = false
+  add_child(ring)
+  selection_rings_by_player[player_id] = ring
+  _update_selection_ring_for_player(player_id)
+  return ring
+
+func _update_all_selection_rings() -> void:
+  for key in selection_rings_by_player.keys():
+    var player_id: int = int(key)
+    _update_selection_ring_for_player(player_id)
+
+func _update_selection_ring_for_player(player_id: int) -> void:
+  var ring: Line2D = selection_rings_by_player.get(player_id) as Line2D
+  if ring == null or not is_instance_valid(ring):
     return
 
-  selection_ring = Line2D.new()
-  selection_ring.name = "SelectionRange"
-  selection_ring.width = selection_ring_width
-  selection_ring.default_color = selection_ring_color
-  selection_ring.closed = true
-  selection_ring.antialiased = true
-  selection_ring.z_index = 1000
-  selection_ring.visible = false
-  add_child(selection_ring)
-  _update_selection_ring()
-
-func _update_selection_ring() -> void:
-  if selection_ring == null or not is_instance_valid(selection_ring):
-    return
-
-  selection_ring.clear_points()
+  ring.clear_points()
 
   var radius := _get_effective_attack_radius_local()
   if radius <= 0.0:
@@ -170,7 +202,14 @@ func _update_selection_ring() -> void:
   var segments := 64
   for i in range(segments):
     var angle := TAU * float(i) / float(segments)
-    selection_ring.add_point(Vector2(cos(angle), sin(angle)) * radius)
+    ring.add_point(Vector2(cos(angle), sin(angle)) * radius)
+
+func _selection_color_for_player(player_id: int) -> Color:
+  if player_id == 1:
+    return selection_ring_color_p1
+  if player_id == 2:
+    return selection_ring_color_p2
+  return Color(1.0, 1.0, 1.0, 0.9)
 
 func _get_effective_attack_radius_local() -> float:
   if attack_collision == null:

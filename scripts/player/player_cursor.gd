@@ -55,7 +55,7 @@ func _update_hovered_tower() -> void:
 
     var hits := world.direct_space_state.intersect_point(query, 16)
     for hit in hits:
-        var collider := hit.get("collider") as Node
+        var collider: Node = hit.get("collider") as Node
         if collider == null or not collider.is_in_group("tower_select_area"):
             continue
         var tower := _resolve_tower_from_node(collider)
@@ -118,7 +118,9 @@ func _resolve_tower_from_node(node: Node) -> Node:
 
 func _clear_selected_towers() -> void:
     for tower in get_tree().get_nodes_in_group("tower"):
-        if tower.has_method("hide_selection_range"):
+        if tower.has_method("hide_selection_range_for_player"):
+            tower.hide_selection_range_for_player(player_id)
+        elif tower.has_method("hide_selection_range"):
             tower.hide_selection_range()
 
 func queue_tower_purchase(tower_scene: PackedScene, tower_name: String, tower_cost: int) -> void:
