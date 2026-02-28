@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bxcdb66f5nq0d"]
+
+[ext_resource type="Texture2D" uid="uid://l1wwueyej74s" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Bushes Medium.png" id="1_4gehw"]
+[ext_resource type="Texture2D" uid="uid://dha4fn03hf1gj" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Bushes Large.png" id="2_j1olc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gehw"]
+radius = 12.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dac7s"]
+size = Vector2(25.283955, 15.801977)
+
+[node name="Bush" type="Sprite2D" unique_id=709254878]
+position = Vector2(0, 6)
+texture = ExtResource("1_4gehw")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1630987557]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1036720541]
+position = Vector2(3, 0)
+shape = SubResource("CircleShape2D_4gehw")
+
+[node name="bush2" type="Sprite2D" parent="." unique_id=1532340088]
+position = Vector2(11.249999, -16.375)
+scale = Vector2(1.265625, 1.3289474)
+texture = ExtResource("2_j1olc")
+
+[node name="Area2D" type="Area2D" parent="bush2" unique_id=1239716226]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bush2/Area2D" unique_id=826123019]
+position = Vector2(1.3827162, -0.094059944)
+scale = Vector2(0.99999964, 1)
+shape = SubResource("RectangleShape2D_dac7s")
