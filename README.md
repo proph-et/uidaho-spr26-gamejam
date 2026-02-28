@@ -25,7 +25,7 @@ Please follow the folder structure below.
 - `scenes/ui/`: UI scenes such as menus, HUD, and overlays.
 - `scripts/`: Game logic scripts (`.gd`).
 - `scripts/autoload/`: Global singleton scripts for systems like save data, audio, or game state.
-- `scripts/player/`: Player-specific logic and components.
+- `scripts/towers/`: tower-specific logic and components.
 - `scripts/enemies/`: Enemy AI, behavior, and combat scripts.
 - `scripts/ui/`: UI behavior scripts.
 - `shaders/`: Shader files and related shader resources.
