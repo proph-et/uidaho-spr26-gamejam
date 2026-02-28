@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://c303dongwcuuh"]
+
+[ext_resource type="Script" uid="uid://bmalrs6eok567" path="res://main_menu.gd" id="1_fsby3"]
+
+[node name="MainMenu" type="Control" unique_id=1672108939]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsby3")
+
+[node name="ButtonManager" type="Control" parent="." unique_id=506070875]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ButtonManager" unique_id=981513980]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -248.0
+offset_right = 48.0
+offset_bottom = -147.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Start" type="Button" parent="ButtonManager/VBoxContainer" unique_id=1568427639]
+layout_mode = 2
+text = "Start Game"
+
+[node name="Options" type="Button" parent="ButtonManager/VBoxContainer" unique_id=1161788385]
+layout_mode = 2
+text = "Options"
+
+[node name="Quit" type="Button" parent="ButtonManager/VBoxContainer" unique_id=1245839604]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="ButtonManager/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ButtonManager/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ButtonManager/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

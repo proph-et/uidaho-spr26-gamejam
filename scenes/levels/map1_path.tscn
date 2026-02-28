@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c6n552h4w7yyj"]
 
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_txlid"]
+[ext_resource type="PackedScene" uid="uid://b17nxui0sgs27" path="res://scenes/ui/in_game_hud.tscn" id="2_ypkx6"]
 
 [sub_resource type="Curve2D" id="Curve2D_471xd"]
 _data = {
@@ -9,6 +10,9 @@ _data = {
 point_count = 14
 
 [node name="Node2D" type="Node2D" unique_id=837977112]
+
+[node name="InGameHud" parent="." unique_id=656908995 instance=ExtResource("2_ypkx6")]
+metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="Sprite2D" parent="." unique_id=880776226]
 position = Vector2(575.99994, 324.00003)

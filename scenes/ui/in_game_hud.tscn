@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://b17nxui0sgs27"]
+
+[ext_resource type="PackedScene" uid="uid://d3cms077qgjwn" path="res://scenes/ui/shop_panel.tscn" id="1_l7ijq"]
+
+[node name="InGameHud" type="CanvasLayer" unique_id=1899128639]
+
+[node name="Player_1_Shop" parent="." unique_id=1435174003 instance=ExtResource("1_l7ijq")]
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_right = 120.0
+grow_horizontal = 1
+
+[node name="Player_2_Shop" parent="." unique_id=299177673 instance=ExtResource("1_l7ijq")]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_right = 0.0
+grow_horizontal = 0
