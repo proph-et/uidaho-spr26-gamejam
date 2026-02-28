@@ -100,7 +100,7 @@ func _prune_invalid_targets() -> void:
   )
 
 func _on_attack_area_body_entered(body: Node2D) -> void:
-  if body.is_in_group("enemies") and body not in targets:
+  if body.is_in_group("enemy") and body not in targets:
     targets.append(body)
 
 func _on_attack_area_body_exited(body: Node2D) -> void:
