@@ -12,6 +12,9 @@ var pending_tower_name := ""
 var pending_tower_cost := 0
 var pending_tower_preview: Node = null
 
+func _ready() -> void:
+    add_to_group("player_cursor")
+
 func _process(delta: float) -> void:
     var dir := Input.get_vector(
         "player_%d_left" % player_id, "player_%d_right" % player_id,
@@ -37,8 +40,7 @@ func _clamp_to_visible_screen() -> void:
     global_position.y = clampf(global_position.y, top_left.y + screen_margin, bottom_right.y - screen_margin)
 
 func _update_hovered_ui() -> void:
-    var viewport := get_viewport()
-    var screen_pos := viewport.get_canvas_transform() * global_position
+    var screen_pos: Vector2 = get_global_transform_with_canvas().origin
     hovered_ui = _pick_ui_at_screen_pos(screen_pos)
 
 func _update_hovered_tower() -> void:
@@ -69,9 +71,18 @@ func attempt_interact() -> void:
         manager.request_interact(player_id, hovered_ui, hovered_tower, self)
         return
 
-    if hovered_ui != null and hovered_ui.has_method("player_interact"):
-        hovered_ui.player_interact(player_id, self)
-        return
+    if hovered_ui != null:
+        var actionable_ui: Control = _resolve_actionable_ui(hovered_ui)
+        if actionable_ui != null and actionable_ui.has_method("player_interact"):
+            actionable_ui.player_interact(player_id, self)
+            return
+        var ui_button: BaseButton = actionable_ui as BaseButton
+        if ui_button != null:
+            if ui_button.toggle_mode:
+                ui_button.button_pressed = not ui_button.button_pressed
+                ui_button.toggled.emit(ui_button.button_pressed)
+            ui_button.pressed.emit()
+            return
 
     if has_pending_tower():
         place_pending_tower()
@@ -91,9 +102,16 @@ func _find_interaction_manager() -> Node:
 
 func _pick_ui_at_screen_pos(screen_pos: Vector2) -> Control:
     var picked: Control = null
-    for node in get_tree().get_nodes_in_group("player_ui_interactable"):
-        var control := node as Control
+    var current_scene := get_tree().current_scene
+    if current_scene == null:
+        return null
+
+    var controls: Array = current_scene.find_children("*", "Control", true, false)
+    for node in controls:
+        var control: Control = node as Control
         if control == null:
+            continue
+        if not _is_actionable_ui(control):
             continue
         if not control.visible:
             continue
@@ -107,6 +125,25 @@ func _pick_ui_at_screen_pos(screen_pos: Vector2) -> Control:
             picked = control
 
     return picked
+
+func _is_actionable_ui(control: Control) -> bool:
+    if control.has_method("player_interact"):
+        return true
+    if control is BaseButton:
+        return true
+    return false
+
+func _resolve_actionable_ui(control: Control) -> Control:
+    var current: Node = control
+    while current != null:
+        var candidate: Control = current as Control
+        if candidate != null:
+            if candidate.has_method("player_interact"):
+                return candidate
+            if candidate is BaseButton:
+                return candidate
+        current = current.get_parent()
+    return null
 
 func _resolve_tower_from_node(node: Node) -> Node:
     var current := node
