@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://d3cms077qgjwn"]
 
-[ext_resource type="Script" path="res://scripts/ui/player_ui_button.gd" id="1_5208a"]
-[ext_resource type="Script" path="res://scripts/ui/shop_panel.gd" id="2_5kvbs"]
+[ext_resource type="Script" uid="uid://cfvkej3bb086y" path="res://scripts/ui/player_ui_button.gd" id="1_5208a"]
+[ext_resource type="Script" uid="uid://0q0sledxvik7" path="res://scripts/ui/shop_panel.gd" id="2_5kvbs"]
 [ext_resource type="PackedScene" uid="uid://bm0md6tldoecq" path="res://scenes/towers/tower_parent.tscn" id="2_vh8x8"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3xd34"]
 
 [node name="ShopPanel" type="Panel" unique_id=1435174003]
-script = ExtResource("2_5kvbs")
 custom_minimum_size = Vector2(120, 256)
 anchors_preset = 8
 anchor_left = 0.5
@@ -22,6 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("2_5kvbs")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=237608589]
 layout_mode = 1
@@ -40,20 +40,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="MoneyLabel" type="Label" parent="VBoxContainer" unique_id=546565823]
+layout_mode = 2
+text = "Player Money Value"
+
 [node name="Tower_Alpha" type="Button" parent="VBoxContainer" unique_id=2023251481]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("1_5208a")
 text = "Tower_Alpha"
+script = ExtResource("1_5208a")
 tower_name = "Tower_Alpha"
-tower_cost = 100
 tower_scene = ExtResource("2_vh8x8")
 
 [node name="Tower_Bravo" type="Button" parent="VBoxContainer" unique_id=1678942403]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("1_5208a")
 text = "Tower_Bravo"
+script = ExtResource("1_5208a")
 tower_name = "Tower_Bravo"
 tower_cost = 150
 tower_scene = ExtResource("2_vh8x8")
@@ -61,8 +64,8 @@ tower_scene = ExtResource("2_vh8x8")
 [node name="Tower_Charlie" type="Button" parent="VBoxContainer" unique_id=653852955]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("1_5208a")
 text = "Tower_Charlie"
+script = ExtResource("1_5208a")
 tower_name = "Tower_Charlie"
 tower_cost = 200
 tower_scene = ExtResource("2_vh8x8")

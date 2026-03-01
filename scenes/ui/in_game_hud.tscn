@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b17nxui0sgs27"]
 
 [ext_resource type="PackedScene" uid="uid://d3cms077qgjwn" path="res://scenes/ui/shop_panel.tscn" id="1_l7ijq"]
+[ext_resource type="Script" uid="uid://03agnedva8fh" path="res://scripts/ui/TestScript.gd" id="2_pxmas"]
 
 [node name="InGameHud" type="CanvasLayer" unique_id=1899128639]
 
@@ -21,3 +22,6 @@ offset_left = -120.0
 offset_right = 0.0
 grow_horizontal = 0
 shop_player_id = 2
+
+[node name="Node" type="Node" parent="." unique_id=893801747]
+script = ExtResource("2_pxmas")
