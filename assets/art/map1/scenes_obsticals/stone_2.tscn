@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://da1gnotqvgooc"]
+
+[ext_resource type="Texture2D" uid="uid://kcaks0yrwo58" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Rock 01.png" id="1_324c4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jlnw"]
+radius = 11.333334
+height = 22.666668
+
+[node name="stone2" type="Sprite2D" unique_id=1070652902]
+scale = Vector2(3, 3)
+texture = ExtResource("1_324c4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2029041610]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=477934548]
+position = Vector2(3, 0.6666667)
+shape = SubResource("CapsuleShape2D_4jlnw")

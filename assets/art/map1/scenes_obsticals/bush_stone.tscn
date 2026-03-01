@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cnno6p4p5v2ld"]
+
+[ext_resource type="Texture2D" uid="uid://dha4fn03hf1gj" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Bushes Large.png" id="1_sso0r"]
+[ext_resource type="Texture2D" uid="uid://kcaks0yrwo58" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Rock 01.png" id="2_dllib"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgmfw"]
+radius = 8.5
+height = 17.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fxxr6"]
+radius = 14.0
+height = 40.0
+
+[node name="BushStone" type="Sprite2D" unique_id=818393953]
+scale = Vector2(2, 2)
+texture = ExtResource("1_sso0r")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1835313556]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=397831924]
+position = Vector2(6, 0)
+shape = SubResource("CapsuleShape2D_dgmfw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1225277898]
+position = Vector2(-5.5, 8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_dllib")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D" unique_id=1881969760]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D" unique_id=1877386410]
+position = Vector2(2, -9)
+shape = SubResource("CapsuleShape2D_fxxr6")

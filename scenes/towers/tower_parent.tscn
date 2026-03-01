@@ -27,3 +27,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_fsqs5")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

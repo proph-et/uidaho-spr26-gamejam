@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://devvfy5w60kki"]
+
+[ext_resource type="Script" uid="uid://ksndr06mqn8v" path="res://scripts/utils/cursor_spawner.gd" id="1_y6vug"]
+
+[node name="CursorSpawner" type="Node" unique_id=1811701091]
+script = ExtResource("1_y6vug")

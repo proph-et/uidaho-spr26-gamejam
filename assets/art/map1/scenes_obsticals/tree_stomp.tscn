@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://chnopng6mjlao"]
+
+[ext_resource type="Texture2D" uid="uid://7gvso0vobsbw" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Tree Medium.png" id="1_4sm1s"]
+[ext_resource type="Texture2D" uid="uid://dlf1xdq1sepb4" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Tree Stump Short.png" id="2_oerf8"]
+[ext_resource type="Texture2D" uid="uid://bu0npi2rp4y2r" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_Prop - Tree Stump Tall.png" id="3_fk7nl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uj21f"]
+size = Vector2(34.444443, 36.666664)
+
+[node name="TreeStomp" type="Sprite2D" unique_id=1480431383]
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("1_4sm1s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=954824405]
+position = Vector2(11.111112, 17.777779)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_oerf8")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=261405771]
+position = Vector2(-16.666666, 17.222223)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_fk7nl")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=660832848]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1827839800]
+position = Vector2(-1.666667, 2.2222233)
+shape = SubResource("RectangleShape2D_uj21f")

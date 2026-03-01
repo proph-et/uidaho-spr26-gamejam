@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://d3cms077qgjwn"]
 
+[ext_resource type="Script" path="res://scripts/ui/player_ui_button.gd" id="1_5208a"]
+[ext_resource type="Script" path="res://scripts/ui/shop_panel.gd" id="2_5kvbs"]
+[ext_resource type="PackedScene" uid="uid://bm0md6tldoecq" path="res://scenes/towers/tower_parent.tscn" id="2_vh8x8"]
+
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3xd34"]
 
 [node name="ShopPanel" type="Panel" unique_id=1435174003]
+script = ExtResource("2_5kvbs")
 custom_minimum_size = Vector2(120, 256)
 anchors_preset = 8
 anchor_left = 0.5
@@ -38,14 +43,26 @@ grow_vertical = 2
 [node name="Tower_Alpha" type="Button" parent="VBoxContainer" unique_id=2023251481]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("1_5208a")
 text = "Tower_Alpha"
+tower_name = "Tower_Alpha"
+tower_cost = 100
+tower_scene = ExtResource("2_vh8x8")
 
 [node name="Tower_Bravo" type="Button" parent="VBoxContainer" unique_id=1678942403]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("1_5208a")
 text = "Tower_Bravo"
+tower_name = "Tower_Bravo"
+tower_cost = 150
+tower_scene = ExtResource("2_vh8x8")
 
 [node name="Tower_Charlie" type="Button" parent="VBoxContainer" unique_id=653852955]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("1_5208a")
 text = "Tower_Charlie"
+tower_name = "Tower_Charlie"
+tower_cost = 200
+tower_scene = ExtResource("2_vh8x8")
