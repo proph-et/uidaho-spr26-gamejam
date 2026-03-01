@@ -27,7 +27,9 @@ func _process(delta: float) -> void:
 
     if Input.is_action_just_pressed("player_%d_interact" % player_id):
         attempt_interact()
-
+    if Input.is_action_just_pressed("player_%d_cancel" % player_id):
+        _cancel_pending_tower()
+        
 func _clamp_to_visible_screen() -> void:
     var viewport := get_viewport()
     var screen_rect := viewport.get_visible_rect()
@@ -197,6 +199,15 @@ func place_pending_tower() -> bool:
     pending_tower_name = ""
     pending_tower_cost = 0
     return true
+    
+func _cancel_pending_tower(): 
+  if has_pending_tower():
+    GameManager.add_money(player_id, pending_tower_cost)
+    _clear_pending_tower_preview()
+    pending_tower_scene = null
+    pending_tower_name = ""
+    pending_tower_cost = 0
+  
 
 func _resolve_tower_parent() -> Node:
     var current_scene := get_tree().current_scene
@@ -207,6 +218,8 @@ func _resolve_tower_parent() -> Node:
     if placed_towers != null:
         return placed_towers
     return current_scene
+    
+
 
 func _can_place_pending_tower_at_cursor() -> bool:
     if pending_tower_preview == null:

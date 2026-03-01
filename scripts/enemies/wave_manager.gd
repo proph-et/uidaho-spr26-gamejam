@@ -32,7 +32,7 @@ func start_wave():
     #every 20th wave increase difficulty
     if (current_wave+1)%20 == 0:
       #this is going to INCREASE number of enemies just for this ONE ROUND
-      enemies_to_spawn = int(enemies_to_spawn*0.5)
+      enemies_to_spawn += int(enemies_to_spawn*0.5)
       spawn_bonus += 1
       
       #this is going to INCREASE enemy health
