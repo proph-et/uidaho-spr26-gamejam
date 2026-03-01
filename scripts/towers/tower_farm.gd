@@ -1,5 +1,5 @@
 extends TowerParent
-class_name tower_farm
+class_name FarmTower
 
 #base values
 @export var base_value := 10
@@ -50,10 +50,25 @@ func collect():
     GameManager.add_money(1, stored_value)
     stored_value = 0
 
-func upgrade_cooldown() -> void:
+func upgrade_1() -> void:
+    if value_upgrade_points < MAX_VALUE_UPGRADE:
+        value_upgrade_points += 1
+
+func upgrade_2() -> void:
     if cooldown_upgrade_points < MAX_COOLDOWN_UPGRADE:
         cooldown_upgrade_points += 1
 
-func upgrade_value() -> void:
-    if value_upgrade_points < MAX_VALUE_UPGRADE:
-        value_upgrade_points += 1
+func can_upgrade_1() -> bool:
+    return value_upgrade_points < MAX_VALUE_UPGRADE
+
+func can_upgrade_2() -> bool:
+    return cooldown_upgrade_points < MAX_COOLDOWN_UPGRADE
+
+func get_upgrade_1_name() -> String:
+    return "Value"
+
+func get_upgrade_2_name() -> String:
+    return "Cooldown"
+
+func get_upgrade_3_name() -> String:
+    return ""
