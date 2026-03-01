@@ -13,3 +13,4 @@ func _process(delta: float) -> void:
 
       print("hit end of line, dying")
       enemy.die()
+      

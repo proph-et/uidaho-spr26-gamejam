@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://dq7fxvycj8165"]
 
 [ext_resource type="Script" uid="uid://b2nobh4ueddm7" path="res://scripts/enemies/wave_manager.gd" id="1_o3lcu"]
+[ext_resource type="PackedScene" uid="uid://c8mlpphnlixka" path="res://scenes/enemies/enemy.tscn" id="2_fawdm"]
+[ext_resource type="PackedScene" uid="uid://cctydxml112sq" path="res://scenes/enemies/armored_enemy.tscn" id="3_tvxga"]
 
 [node name="WaveManager" type="Node2D" unique_id=614178672]
 script = ExtResource("1_o3lcu")
+enemy_prefab = ExtResource("2_fawdm")
+armored_enemy_prefab = ExtResource("3_tvxga")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_7ottc"]
 [ext_resource type="Script" uid="uid://b2nobh4ueddm7" path="res://scripts/enemies/wave_manager.gd" id="1_hd4t5"]
-[ext_resource type="PackedScene" uid="uid://de2dmebjavyto" path="res://scripts/enemies/enemy.tscn" id="2_hd4t5"]
+[ext_resource type="PackedScene" uid="uid://c8mlpphnlixka" path="res://scenes/enemies/enemy.tscn" id="2_hd4t5"]
 
 [sub_resource type="Curve2D" id="Curve2D_471xd"]
 _data = {
