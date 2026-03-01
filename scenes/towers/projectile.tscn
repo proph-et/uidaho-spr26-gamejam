@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dficfvu716cha"]
+
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_14m4s"]
+[ext_resource type="Script" uid="uid://dy33r8244dfc4" path="res://scripts/towers/projectile.gd" id="2_ko5xc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wf55l"]
+radius = 8.0
+
+[node name="Projectile" type="Sprite2D" unique_id=1399291459]
+texture = ExtResource("1_14m4s")
+region_enabled = true
+region_rect = Rect2(37, 60, 12, 12)
+script = ExtResource("2_ko5xc")
+
+[node name="ProjectileArea" type="Area2D" parent="." unique_id=1232545506]
+unique_name_in_owner = true
+
+[node name="ProjectileCollision" type="CollisionShape2D" parent="ProjectileArea" unique_id=1497166190]
+shape = SubResource("CircleShape2D_wf55l")
+
+[connection signal="body_entered" from="ProjectileArea" to="." method="_on_body_entered"]

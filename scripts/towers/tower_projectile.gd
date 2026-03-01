@@ -47,5 +47,6 @@ func spawn_projectile(target: Node2D) -> void:
     proj.global_position = global_position
     proj.damage = damage
     proj.target = target
+    proj.direction = (target.global_position - global_position).normalized()
     proj.max_distance = attack_range 
     get_tree().current_scene.add_child(proj)
