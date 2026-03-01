@@ -14,9 +14,9 @@ var cooldown_upgrade_points := 0
 var stored_value := 0
 var timer: Timer
 
-var can_attack: bool = false
-
-func _ready():
+func _ready() -> void:
+    can_attack = false
+    super._ready()
     add_to_group("farms")
     _setup_spawn_timer()
 
@@ -46,7 +46,8 @@ func get_current_cooldown() -> float:
     return base_spawn_cooldown - cooldown_upgrade_points * 1.8
 
 func collect():
-    #GameManager add money to player = stored_value
+    GameManager.add_money(0, stored_value)
+    GameManager.add_money(1, stored_value)
     stored_value = 0
 
 func upgrade_1() -> void:

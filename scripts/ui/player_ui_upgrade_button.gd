@@ -20,7 +20,7 @@ func _pressed() -> void:
 		return
 
 	# Check money
-	
+
 	#apply the upgrade
 	_apply_upgrade()
 	_update_state()

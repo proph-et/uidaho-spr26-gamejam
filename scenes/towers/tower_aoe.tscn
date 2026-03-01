@@ -1,0 +1,32 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://icon.svg" id="1_icon"]
+[ext_resource type="Script" path="res://scripts/towers/tower_aoe.gd" id="2_script"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tower"]
+radius = 14.26556
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_attack"]
+radius = 50.342876
+
+[node name="TowerAOE" type="Sprite2D"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_icon")
+script = ExtResource("2_script")
+
+[node name="TowerArea" type="Area2D" parent="."]
+
+[node name="TowerCollision" type="CollisionShape2D" parent="TowerArea"]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_tower")
+
+[node name="AttackArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea"]
+unique_name_in_owner = true
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_attack")
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]

@@ -16,7 +16,7 @@ func player_interact(player_id: int, cursor: PlayerCursor = null) -> void:
 	if GameManager.player_money[player_id] >= tower_cost:
 		GameManager.spend_money(player_id, tower_cost)
 		print("purchased tower %s for %d money" % [tower_name, tower_cost])
-	else: 
+	else:
 		return
 	if cursor != null:
 		cursor.queue_tower_purchase(tower_scene, tower_name, tower_cost)

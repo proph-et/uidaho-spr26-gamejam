@@ -71,10 +71,16 @@ func spawn_enemy(enemy: PackedScene):
   e.get_child(0).enemy_died.connect(_on_enemy_died)
   
   
-func _on_enemy_died(enemy):
+func _on_enemy_died(enemy, killed_by_player: bool = false):
   enemies_alive -= 1
+  if killed_by_player:
+      var reward: int = int(enemy.get("kill_reward"))
+      if reward > 0:
+          GameManager.award_kill_money(reward)
     
   if enemies_alive <= 0 && wave_in_progress:
     wave_in_progress = false
     await get_tree().create_timer(time_between_waves).timeout
     start_wave()
+    GameManager.end_wave()
+    GameManager.start_wave()

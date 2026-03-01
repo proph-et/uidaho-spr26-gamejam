@@ -3,17 +3,16 @@ class_name UpgradePanel
 
 var current_tower: Node = null
 
-@onready var button_upgrade_1 = $Panel/Button_Upgrade1
-@onready var button_upgrade_2 = $Panel/Button_Upgrade2
-@onready var button_upgrade_3 = $Panel/Button_Upgrade3
-@onready var label_title: Label = $Panel/Label_Title
-@onready var player1_ui: UpgradePanel = $Player1UI
-@onready var player2_ui: UpgradePanel = $Player2UI
+@export var panel_player_id: int = 0
+
+@onready var button_upgrade_1: UpgradeButton = $Margin/VBoxContainer/Buttons/Button_Upgrade1
+@onready var button_upgrade_2: UpgradeButton = $Margin/VBoxContainer/Buttons/Button_Upgrade2
+@onready var button_upgrade_3: UpgradeButton = $Margin/VBoxContainer/Buttons/Button_Upgrade3
+@onready var label_title: Label = $Margin/VBoxContainer/Label_Title
 
 
 func _ready() -> void:
-	player1_ui.hide_panel()
-	player2_ui.hide_panel()
+	hide_panel()
 
 
 func setup(tower) -> void:
@@ -32,13 +31,11 @@ func hide_panel() -> void:
 	current_tower = null
 
 func on_tower_selected(tower: Node, player_id: int) -> void:
-	if player_id == 1:
-		player1_ui.setup(tower)
-	else:
-		player2_ui.setup(tower)
-		
+	if panel_player_id > 0 and panel_player_id != player_id:
+		return
+	setup(tower)
+
 func on_tower_cleared(player_id: int) -> void:
-	if player_id == 1:
-		player1_ui.hide_panel()
-	elif player_id == 2:
-		player2_ui.hide_panel()
+	if panel_player_id > 0 and panel_player_id != player_id:
+		return
+	hide_panel()

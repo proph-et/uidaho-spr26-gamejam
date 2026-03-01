@@ -2,15 +2,20 @@ extends Control
 
 const PICKS_PER_PLAYER: int = 3
 const SOLO_PICKS_FOR_P1: int = 6
-const TOWER_SCENE: PackedScene = preload("res://scenes/towers/tower_parent.tscn")
+const PROJECTILE_TOWER_SCENE: PackedScene = preload("res://scenes/towers/tower_projectile.tscn")
+const AOE_TOWER_SCENE: PackedScene = preload("res://scenes/towers/tower_aoe.tscn")
+const CLOSE_RANGE_TOWER_SCENE: PackedScene = preload("res://scenes/towers/tower_close_range.tscn")
+const FURTHEST_TOWER_SCENE: PackedScene = preload("res://scenes/towers/tower_furthest.tscn")
+const BUFF_TOWER_SCENE: PackedScene = preload("res://scenes/towers/tower_buff.tscn")
+const FARM_TOWER_SCENE: PackedScene = preload("res://scenes/towers/tower_farm.tscn")
 
 const TOWER_OPTIONS: Array = [
-    {"id": "tower_alpha", "name": "Tower Alpha", "cost": 100, "scene": TOWER_SCENE},
-    {"id": "tower_bravo", "name": "Tower Bravo", "cost": 120, "scene": TOWER_SCENE},
-    {"id": "tower_charlie", "name": "Tower Charlie", "cost": 140, "scene": TOWER_SCENE},
-    {"id": "tower_delta", "name": "Tower Delta", "cost": 160, "scene": TOWER_SCENE},
-    {"id": "tower_echo", "name": "Tower Echo", "cost": 180, "scene": TOWER_SCENE},
-    {"id": "tower_foxtrot", "name": "Tower Foxtrot", "cost": 200, "scene": TOWER_SCENE}
+    {"id": "tower_projectile", "name": "Projectile Tower", "cost": 100, "scene": PROJECTILE_TOWER_SCENE},
+    {"id": "tower_aoe", "name": "AOE Tower", "cost": 120, "scene": AOE_TOWER_SCENE},
+    {"id": "tower_close_range", "name": "Close Range Tower", "cost": 140, "scene": CLOSE_RANGE_TOWER_SCENE},
+    {"id": "tower_furthest", "name": "Furthest Tower", "cost": 160, "scene": FURTHEST_TOWER_SCENE},
+    {"id": "tower_buff", "name": "Buff Tower", "cost": 180, "scene": BUFF_TOWER_SCENE},
+    {"id": "tower_farm", "name": "Farm Tower", "cost": 200, "scene": FARM_TOWER_SCENE}
 ]
 
 const P1_COLOR: Color = Color(0.3, 1.0, 0.5, 1.0)
@@ -68,6 +73,7 @@ func _build_shared_option_buttons() -> void:
         button.custom_minimum_size = Vector2(220, 72)
         button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         button.size_flags_vertical = Control.SIZE_EXPAND_FILL
+        button.clip_text = true
         button.focus_mode = Control.FOCUS_NONE
         options_container.add_child(button)
         option_buttons_by_tower_id[button.tower_id] = button
