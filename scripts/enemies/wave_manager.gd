@@ -4,7 +4,7 @@ extends Node2D
 @export var armored_enemy_prefab: PackedScene
 
 @export var time_between_spawns: float = 1.0
-#@export var time_between_waves: float = 3.0
+@export var time_between_waves: float = 3.0
 @onready var path = get_parent().get_node("Path2D")
 
 var current_wave: int = 0
@@ -20,7 +20,7 @@ func start_wave():
     
     enemies_to_spawn = enemies_to_spawn*2 + 1
     
-    if current_wave%5 == 0:
+    if (current_wave+1)%5 == 0:
       enemies_to_spawn = enemies_to_spawn*2
       
     print("spawning enemies x", enemies_to_spawn)

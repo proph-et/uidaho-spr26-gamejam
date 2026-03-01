@@ -10,9 +10,11 @@ size = Vector2(209, 187)
 [node name="Enemy" type="PathFollow2D" unique_id=1908212354]
 loop = false
 script = ExtResource("1_1uxd7")
+speed = 60.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1752081654 groups=["enemy"]]
 script = ExtResource("2_ebbuh")
+armor = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1902807329]
 position = Vector2(41.5, -29.5)
