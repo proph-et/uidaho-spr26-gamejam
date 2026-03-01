@@ -40,8 +40,7 @@ func _clamp_to_visible_screen() -> void:
     global_position.y = clampf(global_position.y, top_left.y + screen_margin, bottom_right.y - screen_margin)
 
 func _update_hovered_ui() -> void:
-    var viewport := get_viewport()
-    var screen_pos := viewport.get_canvas_transform() * global_position
+    var screen_pos: Vector2 = get_global_transform_with_canvas().origin
     hovered_ui = _pick_ui_at_screen_pos(screen_pos)
 
 func _update_hovered_tower() -> void:
@@ -73,10 +72,11 @@ func attempt_interact() -> void:
         return
 
     if hovered_ui != null:
-        if hovered_ui.has_method("player_interact"):
-            hovered_ui.player_interact(player_id, self)
+        var actionable_ui: Control = _resolve_actionable_ui(hovered_ui)
+        if actionable_ui != null and actionable_ui.has_method("player_interact"):
+            actionable_ui.player_interact(player_id, self)
             return
-        var ui_button: BaseButton = hovered_ui as BaseButton
+        var ui_button: BaseButton = actionable_ui as BaseButton
         if ui_button != null:
             if ui_button.toggle_mode:
                 ui_button.button_pressed = not ui_button.button_pressed
@@ -111,6 +111,8 @@ func _pick_ui_at_screen_pos(screen_pos: Vector2) -> Control:
         var control: Control = node as Control
         if control == null:
             continue
+        if not _is_actionable_ui(control):
+            continue
         if not control.visible:
             continue
         if control.mouse_filter == Control.MOUSE_FILTER_IGNORE:
@@ -123,6 +125,25 @@ func _pick_ui_at_screen_pos(screen_pos: Vector2) -> Control:
             picked = control
 
     return picked
+
+func _is_actionable_ui(control: Control) -> bool:
+    if control.has_method("player_interact"):
+        return true
+    if control is BaseButton:
+        return true
+    return false
+
+func _resolve_actionable_ui(control: Control) -> Control:
+    var current: Node = control
+    while current != null:
+        var candidate: Control = current as Control
+        if candidate != null:
+            if candidate.has_method("player_interact"):
+                return candidate
+            if candidate is BaseButton:
+                return candidate
+        current = current.get_parent()
+    return null
 
 func _resolve_tower_from_node(node: Node) -> Node:
     var current := node

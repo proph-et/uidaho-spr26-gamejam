@@ -1,18 +1,10 @@
 [gd_scene format=3 uid="uid://b17nxui0sgs27"]
 
 [ext_resource type="PackedScene" uid="uid://d3cms077qgjwn" path="res://scenes/ui/shop_panel.tscn" id="1_l7ijq"]
-[ext_resource type="Script" path="res://scripts/ui/in_game_hud.gd" id="2_4wl7y"]
+[ext_resource type="Script" uid="uid://dymg4uq4i4506" path="res://scripts/ui/in_game_hud.gd" id="2_4wl7y"]
 
 [node name="InGameHud" type="CanvasLayer" unique_id=1899128639]
 script = ExtResource("2_4wl7y")
-
-[node name="P2JoinPrompt" type="Label" parent="." unique_name_in_owner=true]
-offset_left = 430.0
-offset_top = 8.0
-offset_right = 853.0
-offset_bottom = 42.0
-text = "Player 2: Hold Interact to Join"
-horizontal_alignment = 1
 
 [node name="Player_1_Shop" parent="." unique_id=1435174003 instance=ExtResource("1_l7ijq")]
 unique_name_in_owner = true

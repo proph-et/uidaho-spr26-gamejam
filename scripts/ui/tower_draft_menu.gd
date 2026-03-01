@@ -37,11 +37,10 @@ var player2_joined: bool = false
 func _ready() -> void:
     GameManager.clear_tower_loadouts()
     GameManager.set_player_active(1, true)
-    GameManager.set_player_active(2, false)
-    GameManager.set_active_player_count(1)
     _build_shared_option_buttons()
     _connect_spawner_signals()
-    player2_joined = _is_player_joined(2)
+    player2_joined = GameManager.is_player_active(2) or _is_player_joined(2)
+    GameManager.set_active_player_count(2 if player2_joined else 1)
     _refresh_join_prompt()
     _refresh_status_and_buttons()
 
