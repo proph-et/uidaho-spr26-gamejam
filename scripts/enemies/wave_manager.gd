@@ -9,6 +9,8 @@ extends Node2D
 
 @onready var path = get_parent().get_node("Path2D")
 
+signal wave_started(wave_number)
+
 var current_wave: int = 0
 var enemies_alive: int = 0
 var enemies_to_spawn: int = 0
@@ -25,6 +27,7 @@ func _ready():
 func start_wave():
     wave_in_progress = true
     current_wave += 1
+    emit_signal("wave_started", current_wave)
     print("current wave is: ", current_wave)
     
     enemies_to_spawn = int(log(current_wave) * spawn_bonus + 3)

@@ -13,10 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsby3")
 
-[node name="CursorSpawner" parent="." unique_name_in_owner = true instance=ExtResource("2_4h5so")]
+[node name="CursorSpawner" parent="." unique_id=1769091761 instance=ExtResource("2_4h5so")]
 cursor_scene = ExtResource("3_hko4h")
 cursor_parent_path = NodePath(".")
-auto_spawn_player_ids = Array[int]([1])
 
 [node name="ButtonManager" type="Control" parent="." unique_id=506070875]
 layout_mode = 1

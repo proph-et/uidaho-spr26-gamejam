@@ -7,7 +7,7 @@ signal enemy_died(enemy)
 
 @export var armor_heal_rate: float = 25
 @export var armor_heal_delay: float = 3.0
-@export var time_since_last_damage: float = 0.0
+var time_since_last_damage: float = 0.0
 
 var health: float
 var armor_health: float

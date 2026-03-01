@@ -22,10 +22,14 @@
 [ext_resource type="PackedScene" uid="uid://8kambbd78vr2" path="res://assets/art/map1/scenes_obsticals/tree1.tscn" id="16_3ucpb"]
 [ext_resource type="PackedScene" uid="uid://dq7fxvycj8165" path="res://scenes/enemies/wave_manager.tscn" id="19_4mwvm"]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://dyk4a4clqabmo" path="res://scenes/enemies/boss_enemy.tscn" id="22_ie2i3"]
 =======
 [ext_resource type="PackedScene" path="res://scenes/enemies/enemy.tscn" id="22_ie2i3"]
 >>>>>>> e0832dd8886a918869171ffa255f9a0d19fe5de2
+=======
+[ext_resource type="PackedScene" uid="uid://b1nvt80ev864o" path="res://scenes/ui/PauseMenu.tscn" id="22_ie2i3"]
+>>>>>>> ce9a254fa8a8aa631fbe0694584dd5ffa720b0e4
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hqcus"]
 texture = ExtResource("1_7r8ho")
@@ -124,7 +128,12 @@ curve = SubResource("Curve2D_3ucpb")
 
 [node name="WaveManager" parent="." unique_id=614178672 instance=ExtResource("19_4mwvm")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 boss_enemy_prefab = ExtResource("22_ie2i3")
 =======
 enemy_prefab = ExtResource("22_ie2i3")
 >>>>>>> e0832dd8886a918869171ffa255f9a0d19fe5de2
+=======
+
+[node name="CanvasLayer" parent="." unique_id=1393540766 instance=ExtResource("22_ie2i3")]
+>>>>>>> ce9a254fa8a8aa631fbe0694584dd5ffa720b0e4

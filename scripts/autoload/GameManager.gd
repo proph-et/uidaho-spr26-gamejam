@@ -23,6 +23,9 @@ func _ready():
     register_player(1)
     # Remove this line when you want P2 to join dynamically instead
     register_player(2)
+  
+    
+    $wave_manager.wave_started.connect($wave_notify.show_wave_notification)
 
 
 # --- Player Registration ---
