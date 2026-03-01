@@ -5,6 +5,7 @@ extends Node2D
 
 @export var time_between_spawns: float = 1.0
 @export var time_between_waves: float = 3.0
+
 @onready var path = get_parent().get_node("Path2D")
 
 var current_wave: int = 0
@@ -47,4 +48,5 @@ func _on_enemy_died(enemy):
     enemies_alive -= 1
     
     if enemies_alive <= 0:
+        await get_tree().create_timer(time_between_waves).timeout
         start_wave()
