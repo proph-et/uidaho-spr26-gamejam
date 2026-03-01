@@ -4,68 +4,70 @@
 [ext_resource type="Script" uid="uid://0q0sledxvik7" path="res://scripts/ui/shop_panel.gd" id="2_5kvbs"]
 [ext_resource type="PackedScene" uid="uid://bm0md6tldoecq" path="res://scenes/towers/tower_parent.tscn" id="2_vh8x8"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3xd34"]
-
 [node name="ShopPanel" type="Panel" unique_id=1435174003]
-custom_minimum_size = Vector2(120, 256)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -60.0
-offset_top = -128.0
-offset_right = 60.0
-offset_bottom = 128.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+custom_minimum_size = Vector2(220, 400)
+size_flags_horizontal = 1
+size_flags_vertical = 1
 script = ExtResource("2_5kvbs")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=237608589]
+[node name="Margin" type="MarginContainer" parent="." unique_id=209201432]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("PlaceholderTexture2D_3xd34")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1261830859]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MoneyLabel" type="Label" parent="VBoxContainer" unique_id=546565823]
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin" unique_id=1261830859]
 layout_mode = 2
-text = "Player Money Value"
+theme_override_constants/separation = 8
 
-[node name="Tower_Alpha" type="Button" parent="VBoxContainer" unique_id=2023251481]
+[node name="MoneyLabel" type="Label" parent="Margin/VBoxContainer" unique_id=546565823]
 layout_mode = 2
+text = "$---"
+horizontal_alignment = 1
+
+[node name="Divider" type="HSeparator" parent="Margin/VBoxContainer"]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="Margin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Tower_Alpha"
+theme_override_constants/separation = 6
+
+[node name="Tower_Alpha" type="Button" parent="Margin/VBoxContainer/Buttons" unique_id=2023251481]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Tower Alpha"
+clip_text = true
 script = ExtResource("1_5208a")
-tower_name = "Tower_Alpha"
+tower_name = "Tower Alpha"
 tower_scene = ExtResource("2_vh8x8")
 
-[node name="Tower_Bravo" type="Button" parent="VBoxContainer" unique_id=1678942403]
+[node name="Tower_Bravo" type="Button" parent="Margin/VBoxContainer/Buttons" unique_id=1678942403]
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
-size_flags_vertical = 3
-text = "Tower_Bravo"
+size_flags_horizontal = 3
+text = "Tower Bravo"
+clip_text = true
 script = ExtResource("1_5208a")
-tower_name = "Tower_Bravo"
+tower_name = "Tower Bravo"
 tower_cost = 150
 tower_scene = ExtResource("2_vh8x8")
 
-[node name="Tower_Charlie" type="Button" parent="VBoxContainer" unique_id=653852955]
+[node name="Tower_Charlie" type="Button" parent="Margin/VBoxContainer/Buttons" unique_id=653852955]
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
-size_flags_vertical = 3
-text = "Tower_Charlie"
+size_flags_horizontal = 3
+text = "Tower Charlie"
+clip_text = true
 script = ExtResource("1_5208a")
-tower_name = "Tower_Charlie"
+tower_name = "Tower Charlie"
 tower_cost = 200
 tower_scene = ExtResource("2_vh8x8")

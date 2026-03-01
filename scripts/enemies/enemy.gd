@@ -12,5 +12,5 @@ func _process(delta: float) -> void:
       GameManager.take_damage(enemy.health)
 
       print("hit end of line, dying")
-      enemy.die()
+      enemy.die(false)
       

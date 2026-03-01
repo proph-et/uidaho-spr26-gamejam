@@ -13,8 +13,11 @@ const MAX_RANGE_UPGRADE := 3
 var buff_amount_upgrade_points := 0
 var range_upgrade_points := 0
 
-var can_attack: bool = false
 var towers_in_range: Array = []
+
+func _ready() -> void:
+    can_attack = false
+    super._ready()
 
 func _on_BuffArea_body_entered(body: Node2D) -> void:
     if body is TowerParent and body != self:

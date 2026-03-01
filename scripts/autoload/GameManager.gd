@@ -162,3 +162,12 @@ func _is_valid_player(player_id: int) -> bool:
         push_warning("GameManager: Invalid player_id %d" % player_id)
         return false
     return true
+
+
+func end_wave():
+    for tower in get_tree().get_nodes_in_group("farms"):
+        tower.on_round_end()
+
+func start_wave():
+    for tower in get_tree().get_nodes_in_group("farms"):
+        tower.on_round_start()
