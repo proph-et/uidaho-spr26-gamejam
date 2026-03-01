@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://duasu3wb7xpq"]
+[gd_scene format=4 uid="uid://cn5skdqkud4ob"]
 
 [ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="1_4mwvm"]
 [ext_resource type="Texture2D" uid="uid://bdhy1k0nfn7h0" path="res://assets/art/map1/map_png/Top-Down Simple Summer_Ground 28.png" id="1_7r8ho"]
@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://b84uh8ynaraoo" path="res://assets/art/map1/map_png/Top-Down Simple Summer_Ground 43.png" id="7_g14in"]
 [ext_resource type="PackedScene" uid="uid://bxcdb66f5nq0d" path="res://assets/art/map1/scenes_obsticals/bush.tscn" id="8_74irq"]
 [ext_resource type="PackedScene" uid="uid://chnopng6mjlao" path="res://assets/art/map1/scenes_obsticals/tree_stomp.tscn" id="8_ejhki"]
-[ext_resource type="PackedScene" path="res://scenes/ui/in_game_hud.tscn" id="8_wid5w"]
+[ext_resource type="PackedScene" uid="uid://b17nxui0sgs27" path="res://scenes/ui/in_game_hud.tscn" id="8_wid5w"]
 [ext_resource type="PackedScene" uid="uid://dmv0e20in0sgm" path="res://assets/art/map1/scenes_obsticals/woods.tscn" id="9_7aqth"]
 [ext_resource type="PackedScene" uid="uid://na0yasn4e7cs" path="res://assets/art/map1/scenes_obsticals/spawn.tscn" id="10_ejhki"]
 [ext_resource type="PackedScene" uid="uid://cnno6p4p5v2ld" path="res://assets/art/map1/scenes_obsticals/bush_stone.tscn" id="11_050k7"]
