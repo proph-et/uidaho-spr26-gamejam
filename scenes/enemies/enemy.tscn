@@ -13,6 +13,7 @@ script = ExtResource("1_38ino")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1752081654 groups=["enemy"]]
 script = ExtResource("2_fcftc")
+max_health = 75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1902807329]
 position = Vector2(41.5, -29.5)
@@ -22,3 +23,10 @@ shape = SubResource("RectangleShape2D_1ksin")
 position = Vector2(-72, 63.5)
 scale = Vector2(0.5234375, 0.46875)
 texture = ExtResource("3_lu5c6")
+
+[node name="EnemyHealthBar" type="ProgressBar" parent="CharacterBody2D" unique_id=81909120]
+offset_left = -95.0
+offset_top = -36.0
+offset_right = 31.0
+offset_bottom = -9.0
+show_percentage = false
