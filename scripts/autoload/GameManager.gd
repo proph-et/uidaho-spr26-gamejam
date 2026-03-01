@@ -102,13 +102,13 @@ func is_player_active(player_id: int) -> bool:
     return bool(player_active_states.get(player_id, false))
 
 func get_active_players() -> Array[int]:
-    var active_players: Array[int] = []
+    var players_active_now: Array[int] = []
     for id_value in player_active_states.keys():
         var player_id: int = int(id_value)
         if bool(player_active_states[player_id]):
-            active_players.append(player_id)
-    active_players.sort()
-    return active_players
+            players_active_now.append(player_id)
+    players_active_now.sort()
+    return players_active_now
 
 func _sync_active_player_count_from_states() -> void:
     var count: int = 0

@@ -28,7 +28,7 @@ const UNCLAIMED_COLOR: Color = Color(1.0, 1.0, 1.0, 1.0)
 @onready var join_prompt: Label = %JoinPrompt
 @onready var options_container: GridContainer = %SharedOptions
 @onready var start_match_button: Button = %StartMatchButton
-@onready var cursor_spawner: CursorSpawner = %CursorSpawner
+@onready var cursor_spawner: CursorSpawner = get_node_or_null("%CursorSpawner") as CursorSpawner
 @onready var p2_info: VBoxContainer = $P2Info
 
 var selected_ids_by_player: Dictionary = {
@@ -84,17 +84,17 @@ func on_draft_option_interact(player_id: int, tower_id: String) -> void:
     if player_id == 2 and not player2_joined:
         return
 
-    var owner: int = int(selected_owner_by_tower_id.get(tower_id, 0))
+    var selection_owner: int = int(selected_owner_by_tower_id.get(tower_id, 0))
     var selected_ids: Array = selected_ids_by_player.get(player_id, [])
 
-    if owner == player_id:
+    if selection_owner == player_id:
         selected_owner_by_tower_id.erase(tower_id)
         selected_ids.erase(tower_id)
         selected_ids_by_player[player_id] = selected_ids
         _refresh_status_and_buttons()
         return
 
-    if owner != 0:
+    if selection_owner != 0:
         return
     if selected_ids.size() >= _max_picks_for_player(player_id):
         return
@@ -118,13 +118,13 @@ func _refresh_status_and_buttons() -> void:
         if button == null:
             continue
 
-        var owner: int = int(selected_owner_by_tower_id.get(tower_id, 0))
+        var selection_owner: int = int(selected_owner_by_tower_id.get(tower_id, 0))
         button.disabled = false
-        button.button_pressed = owner != 0
-        if owner == 1:
+        button.button_pressed = selection_owner != 0
+        if selection_owner == 1:
             button.modulate = P1_COLOR
             button.text = "%s ($%d) [P1]" % [button.tower_name, button.tower_cost]
-        elif owner == 2:
+        elif selection_owner == 2:
             button.modulate = P2_COLOR
             button.text = "%s ($%d) [P2]" % [button.tower_name, button.tower_cost]
         else:
