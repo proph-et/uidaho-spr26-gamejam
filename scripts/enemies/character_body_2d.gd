@@ -23,8 +23,6 @@ func set_enemy_health_bar() -> void:
 func take_damage(amount: int):
   if armor_health > 0:
     armor_health -= amount
-    if armor_health < 0:
-      health + armor_health
   else:
     health -= amount
     
