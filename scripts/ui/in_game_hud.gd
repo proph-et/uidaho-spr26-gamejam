@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var player_1_shop: ShopPanel = %Player_1_Shop
 @onready var player_2_shop: ShopPanel = %Player_2_Shop
-@onready var p2_join_prompt: Label = %P2JoinPrompt
+@onready var p2_join_prompt: Label = get_node_or_null("%P2JoinPrompt") as Label
 
 var cursor_spawner: CursorSpawner = null
 var player2_joined: bool = false
