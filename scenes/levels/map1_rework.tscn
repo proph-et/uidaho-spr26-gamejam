@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://duasu3wb7xpq"]
+[gd_scene format=4 uid="uid://cn5skdqkud4ob"]
 
 [ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="1_4mwvm"]
 [ext_resource type="Texture2D" uid="uid://bdhy1k0nfn7h0" path="res://assets/art/map1/map_png/Top-Down Simple Summer_Ground 28.png" id="1_7r8ho"]
