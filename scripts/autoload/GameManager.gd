@@ -3,6 +3,7 @@ extends Node
 signal money_changed(player_id, new_amount)
 signal player_registered(player_id)
 signal money_transferred(from_id, to_id, amount)
+signal game_over
 
 const STARTING_MONEY := 650
 
@@ -71,11 +72,12 @@ func get_money(player_id: int) -> int:
 	return player_money[player_id]
 
 func take_damage(amount: int):
-	health -= amount
-	print("Base health: ", health)
-	if health <= 0:
-		print("Game Over")
-
+    health -= amount
+    print("Base health: ", health)
+    if health <= 0:
+        health = 0 
+        game_over.emit()
+  
 func set_player_tower_loadout(player_id: int, towers: Array) -> void:
 	player_tower_loadouts[player_id] = towers.duplicate(true)
 

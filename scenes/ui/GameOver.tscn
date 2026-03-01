@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b3i4uhb4dgaoj"]
+
+[ext_resource type="Script" uid="uid://bg6fmcm0us21s" path="res://scripts/ui/game_over.gd" id="1_kp3qx"]
+
+[node name="GameOver" type="CanvasLayer" unique_id=823290231]
+script = ExtResource("1_kp3qx")
+
+[node name="Panel" type="Panel" parent="." unique_id=1219994984]
+offset_right = 1154.0
+offset_bottom = 650.0
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=897843478]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -29.0
+offset_right = 48.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=349706783]
+layout_mode = 2
+
+[node name="TittleLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1272850897]
+layout_mode = 2
+text = "GAME OVER"
+
+[node name="MainMenuButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1517800039]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
