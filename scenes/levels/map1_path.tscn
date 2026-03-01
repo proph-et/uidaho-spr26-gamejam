@@ -14,12 +14,9 @@ point_count = 14
 
 [node name="Node2D" type="Node2D" unique_id=837977112]
 
-[node name="CursorLayer" type="CanvasLayer" parent="." unique_id=545898411]
-layer = 2
-
 [node name="CursorSpawner" parent="." unique_id=1811701091 instance=ExtResource("5_ssfu3")]
 cursor_scene = ExtResource("5_m2ap8")
-cursor_parent_path = NodePath("../CursorLayer")
+cursor_parent_path = NodePath(".")
 
 [node name="InGameHud" parent="." unique_id=656908995 instance=ExtResource("2_ypkx6")]
 metadata/_edit_use_anchors_ = true

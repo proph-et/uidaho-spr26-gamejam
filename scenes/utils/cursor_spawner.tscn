@@ -2,5 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ksndr06mqn8v" path="res://scripts/utils/cursor_spawner.gd" id="1_y6vug"]
 
-[node name="CursorSpawner" type="Node" unique_id=1811701091]
+[node name="CursorSpawner" type="CanvasLayer" unique_id=953194831]
+layer = 2
 script = ExtResource("1_y6vug")
