@@ -137,7 +137,7 @@ func _on_start_match_button_pressed() -> void:
     GameManager.set_active_player_count(2 if player2_joined else 1)
     GameManager.set_player_tower_loadout(1, _build_player_loadout(1))
     GameManager.set_player_tower_loadout(2, _build_player_loadout(2))
-    get_tree().change_scene_to_file("res://scenes/levels/map1_path.tscn")
+    get_tree().change_scene_to_file("res://scenes/levels/map1_rework.tscn")
 
 func _build_player_loadout(player_id: int) -> Array:
     var selected_ids: Array = selected_ids_by_player.get(player_id, [])
