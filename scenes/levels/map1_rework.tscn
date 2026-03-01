@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://duasu3wb7xpq"]
 
 [ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="1_4mwvm"]
+[ext_resource type="Script" uid="uid://s8oevqo4knvd" path="res://scripts/ui/EndGameListener.gd" id="1_5nsly"]
 [ext_resource type="Texture2D" uid="uid://bdhy1k0nfn7h0" path="res://assets/art/map1/map_png/Top-Down Simple Summer_Ground 28.png" id="1_7r8ho"]
 [ext_resource type="PackedScene" uid="uid://dh0cskp88pxgt" path="res://scenes/player/player_cursor.tscn" id="2_f057x"]
 [ext_resource type="Texture2D" uid="uid://yah23kfc03bi" path="res://assets/art/map1/map_png/Top-Down Simple Summer_Ground 30.png" id="2_mx75i"]
@@ -89,6 +90,7 @@ _data = {
 point_count = 14
 
 [node name="Node2D" type="Node2D" unique_id=987658530]
+script = ExtResource("1_5nsly")
 
 [node name="CursorSpawner" parent="." unique_id=1811701091 instance=ExtResource("1_4mwvm")]
 cursor_scene = ExtResource("2_f057x")
