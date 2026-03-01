@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://c303dongwcuuh"]
 
 [ext_resource type="Script" uid="uid://jhkhx1q54bel" path="res://scripts/ui/main_menu.gd" id="1_fsby3"]
+[ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="2_4h5so"]
+[ext_resource type="PackedScene" uid="uid://dh0cskp88pxgt" path="res://scenes/player/player_cursor.tscn" id="3_hko4h"]
 
 [node name="MainMenu" type="Control" unique_id=1672108939]
 layout_mode = 3
@@ -10,6 +12,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsby3")
+
+[node name="CursorSpawner" parent="." unique_name_in_owner = true instance=ExtResource("2_4h5so")]
+cursor_scene = ExtResource("3_hko4h")
+cursor_parent_path = NodePath(".")
+auto_spawn_player_ids = Array[int]([1])
 
 [node name="ButtonManager" type="Control" parent="." unique_id=506070875]
 layout_mode = 1

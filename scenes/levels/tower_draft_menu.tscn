@@ -1,0 +1,134 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/tower_draft_menu.gd" id="1_t9chx"]
+[ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="2_spwnr"]
+[ext_resource type="PackedScene" uid="uid://dh0cskp88pxgt" path="res://scenes/player/player_cursor.tscn" id="3_crsrp"]
+
+[node name="TowerDraftMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t9chx")
+
+[node name="CursorSpawner" parent="." unique_name_in_owner = true instance=ExtResource("2_spwnr")]
+cursor_scene = ExtResource("3_crsrp")
+cursor_parent_path = NodePath(".")
+auto_spawn_player_ids = Array[int]([1])
+
+[node name="P1Info" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 300.0
+offset_bottom = 72.0
+
+[node name="P1Title" type="Label" parent="P1Info"]
+layout_mode = 2
+text = "Player 1"
+
+[node name="P1Status" type="Label" parent="P1Info"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player 1 Picks: 0/3"
+
+[node name="P2Info" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -300.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = 92.0
+alignment = 0
+
+[node name="P2Title" type="Label" parent="P2Info"]
+layout_mode = 2
+text = "Player 2"
+horizontal_alignment = 2
+
+[node name="P2Status" type="Label" parent="P2Info"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player 2 Picks: 0/3"
+horizontal_alignment = 2
+
+[node name="JoinPrompt" type="Label" parent="P2Info"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Player 2 Hold Interact to Join"
+horizontal_alignment = 2
+
+[node name="CenterWrap" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 88.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DraftPanel" type="PanelContainer" parent="CenterWrap"]
+layout_mode = 2
+custom_minimum_size = Vector2(760, 420)
+
+[node name="PanelMargin" type="MarginContainer" parent="CenterWrap/DraftPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 14
+
+[node name="PanelVBox" type="VBoxContainer" parent="CenterWrap/DraftPanel/PanelMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="CenterWrap/DraftPanel/PanelMargin/PanelVBox"]
+layout_mode = 2
+text = "Shared Tower Pool"
+horizontal_alignment = 1
+
+[node name="SharedOptions" type="GridContainer" parent="CenterWrap/DraftPanel/PanelMargin/PanelVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 3
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+
+[node name="BottomActions" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -56.0
+offset_right = -16.0
+offset_bottom = -16.0
+alignment = 1
+theme_override_constants/separation = 14
+
+[node name="BackButton" type="Button" parent="BottomActions"]
+layout_mode = 2
+custom_minimum_size = Vector2(160, 36)
+text = "Back"
+
+[node name="StartMatchButton" type="Button" parent="BottomActions"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(200, 36)
+disabled = true
+text = "Start Match"
+
+[connection signal="pressed" from="BottomActions/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="BottomActions/StartMatchButton" to="." method="_on_start_match_button_pressed"]

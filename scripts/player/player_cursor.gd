@@ -12,6 +12,9 @@ var pending_tower_name := ""
 var pending_tower_cost := 0
 var pending_tower_preview: Node = null
 
+func _ready() -> void:
+    add_to_group("player_cursor")
+
 func _process(delta: float) -> void:
     var dir := Input.get_vector(
         "player_%d_left" % player_id, "player_%d_right" % player_id,
@@ -69,9 +72,17 @@ func attempt_interact() -> void:
         manager.request_interact(player_id, hovered_ui, hovered_tower, self)
         return
 
-    if hovered_ui != null and hovered_ui.has_method("player_interact"):
-        hovered_ui.player_interact(player_id, self)
-        return
+    if hovered_ui != null:
+        if hovered_ui.has_method("player_interact"):
+            hovered_ui.player_interact(player_id, self)
+            return
+        var ui_button: BaseButton = hovered_ui as BaseButton
+        if ui_button != null:
+            if ui_button.toggle_mode:
+                ui_button.button_pressed = not ui_button.button_pressed
+                ui_button.toggled.emit(ui_button.button_pressed)
+            ui_button.pressed.emit()
+            return
 
     if has_pending_tower():
         place_pending_tower()
@@ -91,8 +102,13 @@ func _find_interaction_manager() -> Node:
 
 func _pick_ui_at_screen_pos(screen_pos: Vector2) -> Control:
     var picked: Control = null
-    for node in get_tree().get_nodes_in_group("player_ui_interactable"):
-        var control := node as Control
+    var current_scene := get_tree().current_scene
+    if current_scene == null:
+        return null
+
+    var controls: Array = current_scene.find_children("*", "Control", true, false)
+    for node in controls:
+        var control: Control = node as Control
         if control == null:
             continue
         if not control.visible:
