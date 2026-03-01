@@ -2,6 +2,7 @@ extends Node2D
 
 @export var enemy_prefab: PackedScene
 @export var armored_enemy_prefab: PackedScene
+@export var boss_enemy_prefab: PackedScene
 
 @export var time_between_spawns: float = 2.0
 @export var time_between_waves: float = 10.0
@@ -60,6 +61,9 @@ func spawn_wave():
       spawn_enemy(armored_enemy_prefab)
       
     await get_tree().create_timer(time_between_spawns).timeout
+    
+  if current_wave == 20:
+    spawn_enemy(boss_enemy_prefab)
 
 func spawn_enemy(enemy: PackedScene):
   var e = enemy.instantiate()
