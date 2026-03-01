@@ -1,14 +1,5 @@
 extends TowerParent
 
-# base values
-@export var damage: float = 30
-@export var attack_cooldown_s: float = 0.5
-@export var attack_range: float = 80.0:
-	set(value):
-		attack_range = maxf(value, 0.0)
-		_update_attack_collision_size()
-@export var target_mode: TargettingMode = TargettingMode.CLOSEST
-
 # max upgrade points
 const MAX_DAMAGE_UPGRADE := 3
 const MAX_COOLDOWN_UPGRADE := 3
@@ -19,6 +10,10 @@ var cooldown_upgrade_points := 0
 var range_upgrade_points := 0
 
 func _ready() -> void:
+	damage = 30.0
+	attack_cooldown_s = 0.5
+	attack_range = 80.0
+	target_mode = TargettingMode.CLOSEST
 	super._ready()
 
 func upgrade_1() -> void:

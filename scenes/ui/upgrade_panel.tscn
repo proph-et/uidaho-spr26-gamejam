@@ -3,49 +3,69 @@
 [ext_resource type="Script" uid="uid://by0nkb2efjdem" path="res://scripts/ui/upgrade_panel.gd" id="1_e5ty5"]
 [ext_resource type="Script" uid="uid://cymtlenq3enov" path="res://scripts/ui/player_ui_upgrade_button.gd" id="2_c7c74"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cdmev"]
-
 [node name="UpgradePanel" type="Panel" unique_id=291128638]
+custom_minimum_size = Vector2(220, 400)
+size_flags_horizontal = 1
+size_flags_vertical = 1
 script = ExtResource("1_e5ty5")
 metadata/_custom_type_script = "uid://by0nkb2efjdem"
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=916843707]
+[node name="Margin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 512.0
-offset_top = 192.0
-offset_right = 640.0
-offset_bottom = 448.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("PlaceholderTexture2D_cdmev")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2057806994]
-layout_mode = 0
-offset_left = 512.0
-offset_top = 256.0
-offset_right = 640.0
-offset_bottom = 448.0
-
-[node name="UpgradeButton1" type="Button" parent="VBoxContainer" unique_id=1567001582]
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin"]
 layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label_Title" type="Label" parent="Margin/VBoxContainer"]
+layout_mode = 2
+text = "No Tower"
+horizontal_alignment = 1
+
+[node name="Divider" type="HSeparator" parent="Margin/VBoxContainer"]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="Margin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="Button_Upgrade1" type="Button" parent="Margin/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "Upgrade 1"
+clip_text = true
 script = ExtResource("2_c7c74")
 metadata/_custom_type_script = "uid://cymtlenq3enov"
 
-[node name="UpgradeButton2" type="Button" parent="VBoxContainer" unique_id=1971815440]
+[node name="Button_Upgrade2" type="Button" parent="Margin/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "Upgrade 2"
+clip_text = true
 script = ExtResource("2_c7c74")
 metadata/_custom_type_script = "uid://cymtlenq3enov"
 
-[node name="UpgradeButton3" type="Button" parent="VBoxContainer" unique_id=1014476681]
+[node name="Button_Upgrade3" type="Button" parent="Margin/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 44)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "Upgrade 3"
+clip_text = true
 script = ExtResource("2_c7c74")
 metadata/_custom_type_script = "uid://cymtlenq3enov"
