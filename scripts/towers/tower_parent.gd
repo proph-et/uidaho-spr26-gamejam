@@ -9,9 +9,9 @@ enum TargettingMode {
 @export var damage: float = 10.0
 @export var attack_cooldown_s: float = 1.0
 @export var attack_range: float = 100.0:
-  set(value):
-    attack_range = maxf(value, 0.0)
-    _update_attack_collision_size()
+    set(value):
+        attack_range = maxf(value, 0.0)
+        _update_attack_collision_size()
 @export var cost: int = 50
 @export var target_mode: TargettingMode = TargettingMode.FURTHEST
 @export var selection_ring_color_p1: Color = Color(0.3, 1.0, 0.5, 0.9)
@@ -19,9 +19,13 @@ enum TargettingMode {
 @export var selection_ring_width: float = 2.0
 
 var can_attack: bool = true
+var damage_multiplier: float = 1.0
 var attack_timer: Timer
 var targets: Array[Node2D] = []
 var selection_rings_by_player: Dictionary = {}
+
+#signal for the upgrades of towers
+signal tower_selected(tower: TowerParent, player_id: int)
 
 static var selected_tower_by_player: Dictionary = {}
 
@@ -30,18 +34,18 @@ static var selected_tower_by_player: Dictionary = {}
 @onready var tower_area: Area2D = $TowerArea
 
 func _ready() -> void:
-  add_to_group("tower")
-  if tower_area != null:
-    tower_area.add_to_group("tower_select_area")
-  _setup_attack_timer()
-  _update_attack_collision_size()
+    add_to_group("tower")
+    if tower_area != null:
+        tower_area.add_to_group("tower_select_area")
+    _setup_attack_timer()
+    _update_attack_collision_size()
 
 func _exit_tree() -> void:
   var to_clear: Array[int] = []
   for key in selected_tower_by_player.keys():
     var player_id: int = int(key)
     if selected_tower_by_player[player_id] == self:
-      to_clear.append(player_id)
+        to_clear.append(player_id)
   for player_id in to_clear:
     selected_tower_by_player.erase(player_id)
 
@@ -64,21 +68,21 @@ func _perform_attack(selected_targets: Array[Node2D]) -> void:
   # Child towers can override this for projectiles, buffs, status effects, etc.
   for target in selected_targets:
     if is_instance_valid(target) and target.has_method("take_damage"):
-      target.take_damage(damage)
+        target.take_damage(damage)
 
 func _select_targets() -> Array[Node2D]:
   match target_mode:
     TargettingMode.ALL_IN_RANGE:
-      return targets
+        return targets
     TargettingMode.CLOSEST:
-      var closest_target := _closest_target()
-      if closest_target == null:
-        return []
-      return [closest_target]
+        var closest_target := _closest_target()
+        if closest_target == null:
+            return []
+        return [closest_target]
     TargettingMode.FURTHEST:
-      if targets.is_empty():
-        return []
-      return [targets[0]]
+        if targets.is_empty():
+            return []
+        return [targets[0]]
 
   return []
 
@@ -88,12 +92,12 @@ func _closest_target() -> Node2D:
 
   for target in targets:
     if not is_instance_valid(target):
-      continue
+        continue
 
     var dist_sq := global_position.distance_squared_to(target.global_position)
     if dist_sq < closest_dist_sq:
-      closest_dist_sq = dist_sq
-      closest = target
+        closest_dist_sq = dist_sq
+        closest = target
   
   return closest
 
@@ -132,9 +136,9 @@ func can_interact(player_id: int) -> bool:
   for key in selected_tower_by_player.keys():
     var other_player_id: int = int(key)
     if other_player_id == player_id:
-      continue
+        continue
     if selected_tower_by_player[other_player_id] == self:
-      return false
+        return false
   return true
 
 func interact(player_id: int) -> void:
@@ -158,12 +162,13 @@ func _select_for_player(player_id: int) -> void:
   var previous: Variant = selected_tower_by_player.get(player_id)
   if previous != null and previous != self and is_instance_valid(previous):
     if previous.has_method("hide_selection_range_for_player"):
-      previous.hide_selection_range_for_player(player_id)
+        previous.hide_selection_range_for_player(player_id)
 
   var ring := _ensure_selection_ring_for_player(player_id)
   if ring != null and is_instance_valid(ring):
     ring.visible = true
   selected_tower_by_player[player_id] = self
+  emit_signal("tower_selected", self, player_id)
 
 func _ensure_selection_ring_for_player(player_id: int) -> Line2D:
   var existing: Line2D = selection_rings_by_player.get(player_id) as Line2D
@@ -224,3 +229,36 @@ func _get_effective_attack_radius_local() -> float:
   var local_sy := absf(attack_collision.global_scale.y) / self_sy
   var local_scale := maxf(local_sx, local_sy)
   return circle.radius * local_scale
+
+
+#upgrade functions
+func upgrade_1() -> void:
+    pass
+
+func upgrade_2() -> void:
+    pass
+
+func upgrade_3() -> void:
+    pass
+
+func can_upgrade_1() -> bool:
+    return false
+
+func can_upgrade_2() -> bool:
+    return false
+
+func can_upgrade_3() -> bool:
+    return false
+
+func get_upgrade_1_name() -> String:
+    return "Damage"
+
+func get_upgrade_2_name() -> String:
+    return "Cooldown"
+
+func get_upgrade_3_name() -> String:
+    return "Range"
+
+#function to get current damage with mulipliers
+func get_damage() -> float:
+    return damage * damage_multiplier
