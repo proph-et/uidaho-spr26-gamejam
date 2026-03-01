@@ -3,10 +3,12 @@ extends CharacterBody2D
 signal enemy_died(enemy)
 
 @export var max_health: int = 100
+@export var armor: int = 0
+
 var health: int
 
 func _ready():
-  health = max_health
+  health = max_health + armor
 
 func take_damage(amount: int):
   health -= amount
