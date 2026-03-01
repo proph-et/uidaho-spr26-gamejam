@@ -40,6 +40,9 @@ func _ready() -> void:
             spawn_cursor(player_id)
 
 func _process(_delta: float) -> void:
+    if not cursors.has(1):
+        spawn_cursor(1)
+
     for player_id in range(1, max_players + 1):
         if not _can_player_join_in_current_context(player_id):
             continue
@@ -87,6 +90,8 @@ func spawn_cursor(player_id: int) -> void:
     player_joined.emit(player_id)
 
 func despawn_cursor(player_id: int) -> void:
+    if player_id == 1:
+        return
     if not cursors.has(player_id):
         return
     cursors[player_id].queue_free()
@@ -200,6 +205,9 @@ func _can_player_join_in_current_context(player_id: int) -> bool:
     return match_started_with_coplayer
 
 func _can_player_leave_in_current_context(player_id: int) -> bool:
+    if player_id == 1:
+        return false
+
     var current_scene := get_tree().current_scene
     if current_scene == null:
         return true
