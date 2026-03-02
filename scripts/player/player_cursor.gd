@@ -14,9 +14,6 @@ var pending_tower_name := ""
 var pending_tower_cost := 0
 var pending_tower_preview: Node = null
 
-#signal for upgrade panel
-signal tower_cleared(player_id: int)
-
 func _ready() -> void:
   add_to_group("player_cursor")
 
