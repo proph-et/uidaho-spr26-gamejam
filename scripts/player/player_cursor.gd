@@ -6,6 +6,7 @@ class_name PlayerCursor
 @export var screen_margin: float = 0.0
 @export var ui_interact_tolerance_px: float = 14.0
 @export var tower_interact_tolerance_px: float = 18.0
+@export var block_track_placement: bool = true
 
 var hovered_tower: Node = null
 var hovered_ui: Control = null
@@ -245,6 +246,9 @@ func _resolve_tower_parent() -> Node:
 
 
 func _can_place_pending_tower_at_cursor() -> bool:
+  if block_track_placement and _is_position_on_track(global_position):
+    return false
+
   if pending_tower_preview == null:
     return true
 
@@ -274,6 +278,28 @@ func _can_place_pending_tower_at_cursor() -> bool:
       return false
 
   return true
+
+func _is_position_on_track(world_position: Vector2) -> bool:
+  var current_scene := get_tree().current_scene
+  if current_scene == null:
+    return false
+
+  var layers: Array = current_scene.find_children("*", "TileMapLayer", true, false)
+  for node in layers:
+    var layer := node as TileMapLayer
+    if layer == null:
+      continue
+
+    var layer_name := String(layer.name).to_lower()
+    if not (layer_name.contains("path") or layer_name.contains("track")):
+      continue
+
+    var local_pos := layer.to_local(world_position)
+    var cell := layer.local_to_map(local_pos)
+    if layer.get_cell_source_id(cell) != -1:
+      return true
+
+  return false
 
 func _create_pending_tower_preview() -> void:
   if pending_tower_scene == null:
