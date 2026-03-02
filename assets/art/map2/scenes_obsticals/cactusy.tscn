@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dxqfexef3yvne"]
+
+[ext_resource type="Texture2D" uid="uid://cdwirmmr0a8q" path="res://assets/art/map2/obstacles/greenery_3.png" id="1_2tu0a"]
+[ext_resource type="Texture2D" uid="uid://wj4lk42h6neu" path="res://assets/art/map2/obstacles/greenery_7.png" id="2_6xy1p"]
+[ext_resource type="Texture2D" uid="uid://x8h6rahb0goq" path="res://assets/art/map2/obstacles/greenery_1.png" id="3_gtcah"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pxbwx"]
+radius = 129.99998
+height = 319.99997
+
+[node name="Cactusy" type="Sprite2D" unique_id=752924305]
+position = Vector2(0.99999994, 0.99999994)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_2tu0a")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1096958696]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1671596587]
+position = Vector2(-30, 40)
+shape = SubResource("CapsuleShape2D_pxbwx")
+
+[node name="Greenery7" type="Sprite2D" parent="." unique_id=1815052102]
+position = Vector2(30.000002, 120)
+texture = ExtResource("2_6xy1p")
+
+[node name="Greenery1" type="Sprite2D" parent="." unique_id=1566151031]
+position = Vector2(-70, 40.000008)
+texture = ExtResource("3_gtcah")

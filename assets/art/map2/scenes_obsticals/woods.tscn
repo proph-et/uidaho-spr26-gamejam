@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c8ldex80gylo4"]
+
+[ext_resource type="Texture2D" uid="uid://5fxrf66k87um" path="res://assets/art/map2/obstacles/tree_8.png" id="1_vpyla"]
+[ext_resource type="Texture2D" uid="uid://bo3la43ihqkyc" path="res://assets/art/map2/obstacles/tree_7.png" id="2_7alf3"]
+[ext_resource type="Texture2D" uid="uid://va2c8l2t7q1d" path="res://assets/art/map2/obstacles/tree_10.png" id="3_r3ejh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6jo67"]
+radius = 249.99998
+height = 594.99994
+
+[node name="Woods" type="Sprite2D" unique_id=694230295]
+position = Vector2(-3.8146973e-06, 0.99999994)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_vpyla")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=566112626]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=332241303]
+position = Vector2(2.5000093, 34.999996)
+shape = SubResource("CapsuleShape2D_6jo67")
+
+[node name="Tree8" type="Sprite2D" parent="." unique_id=1214758702]
+position = Vector2(147.5, 97.5)
+texture = ExtResource("2_7alf3")
+
+[node name="Tree11" type="Sprite2D" parent="." unique_id=1159101813]
+position = Vector2(62.500008, 225)
+texture = ExtResource("3_r3ejh")
+
+[node name="Tree12" type="Sprite2D" parent="." unique_id=221198185]
+position = Vector2(-149.99998, 92.5)
+texture = ExtResource("3_r3ejh")
+
+[node name="Tree10" type="Sprite2D" parent="." unique_id=603886875]
+position = Vector2(-132.49998, 195)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("3_r3ejh")

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://db7ycvxs7pdia"]
+
+[ext_resource type="Texture2D" uid="uid://bx6bg3uuss3w0" path="res://assets/art/map2/obstacles/greenery_4.png" id="1_nu5n4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rcec1"]
+radius = 43.0
+height = 100.0
+
+[node name="Cactusbig" type="Sprite2D" unique_id=1824914443]
+texture = ExtResource("1_nu5n4")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=70247930]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1217574991]
+position = Vector2(1, -4)
+shape = SubResource("CapsuleShape2D_rcec1")

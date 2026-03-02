@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://d3d84c3u3qwfa"]
+
+[ext_resource type="Texture2D" uid="uid://bvi351hrdq86p" path="res://assets/art/map2/obstacles/stones_5.png" id="1_dsk4t"]
+[ext_resource type="Texture2D" uid="uid://dbmc166miw11" path="res://assets/art/map2/obstacles/greenery_10.png" id="2_ejdva"]
+[ext_resource type="Texture2D" uid="uid://i7cjcgwftbth" path="res://assets/art/map2/obstacles/stones_4.png" id="3_tbd36"]
+[ext_resource type="Texture2D" uid="uid://g21rbq86oe1g" path="res://assets/art/map2/obstacles/stones_8.png" id="4_sfyud"]
+[ext_resource type="Texture2D" uid="uid://dkk74ox8xq7dc" path="res://assets/art/map2/obstacles/greenery_8.png" id="5_b2nh6"]
+[ext_resource type="Texture2D" uid="uid://bh3u7mc61dwd4" path="res://assets/art/map2/obstacles/greenery_6.png" id="6_c36bx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dfp5g"]
+radius = 139.99998
+
+[node name="Stonepile" type="Sprite2D" unique_id=2085539030]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_dsk4t")
+
+[node name="Greenery10" type="Sprite2D" parent="." unique_id=1727226228]
+position = Vector2(66.25, 29.499998)
+scale = Vector2(1.0882353, 1.2638888)
+texture = ExtResource("2_ejdva")
+
+[node name="Greenery11" type="Sprite2D" parent="." unique_id=15703051]
+position = Vector2(-45, 65)
+texture = ExtResource("2_ejdva")
+
+[node name="Stones4" type="Sprite2D" parent="." unique_id=958838015]
+position = Vector2(20, 59.999996)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_tbd36")
+
+[node name="Stones8" type="Sprite2D" parent="." unique_id=318688248]
+position = Vector2(24.999998, 119.999985)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("4_sfyud")
+
+[node name="Greenery8" type="Sprite2D" parent="." unique_id=1372273159]
+position = Vector2(-75.000015, 149.99998)
+texture = ExtResource("5_b2nh6")
+
+[node name="Greenery6" type="Sprite2D" parent="." unique_id=1428022093]
+position = Vector2(-130, 30.000002)
+texture = ExtResource("6_c36bx")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=354990058]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1703232223]
+position = Vector2(-25, 60)
+shape = SubResource("CircleShape2D_dfp5g")
