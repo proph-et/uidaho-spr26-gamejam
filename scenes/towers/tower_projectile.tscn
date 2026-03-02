@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c0ejs8lk7o44v"]
 
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="1_icon"]
+[ext_resource type="Texture2D" path="res://assets/art/dino sprites/Oviraptor/Idle_000.png" id="1_icon"]
 [ext_resource type="Script" uid="uid://d4g1p5sqawlma" path="res://scripts/towers/tower_projectile.gd" id="2_script"]
 [ext_resource type="PackedScene" uid="uid://dficfvu716cha" path="res://scenes/towers/projectile.tscn" id="3_ooirc"]
 
@@ -12,9 +12,12 @@ radius = 50.342876
 
 [node name="TowerProjectile" type="Sprite2D" unique_id=1785689359]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_icon")
 script = ExtResource("2_script")
 projectile_scene = ExtResource("3_ooirc")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("1_icon")
 
 [node name="TowerArea" type="Area2D" parent="." unique_id=1544306015]
 

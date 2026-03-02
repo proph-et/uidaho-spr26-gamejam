@@ -4,10 +4,61 @@
 [ext_resource type="Script" uid="uid://0q0sledxvik7" path="res://scripts/ui/shop_panel.gd" id="2_5kvbs"]
 [ext_resource type="PackedScene" uid="uid://bm0md6tldoecq" path="res://scenes/towers/tower_parent.tscn" id="2_vh8x8"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.07058824, 0.09803922, 0.07058824, 0.86)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.38039216, 0.5529412, 0.34509805, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.18431373, 0.25882354, 0.16470589, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5921569, 0.77254903, 0.5294118, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.2627451, 0.36078432, 0.23529412, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7176471, 0.85882354, 0.6627451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.14901961, 0.20392157, 0.13333334, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.46666667, 0.6392157, 0.43529412, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="ShopPanel" type="Panel" unique_id=1435174003]
-custom_minimum_size = Vector2(220, 400)
+custom_minimum_size = Vector2(240, 400)
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 script = ExtResource("2_5kvbs")
 
 [node name="Margin" type="MarginContainer" parent="." unique_id=209201432]
@@ -28,6 +79,8 @@ theme_override_constants/separation = 8
 
 [node name="MoneyLabel" type="Label" parent="Margin/VBoxContainer" unique_id=546565823]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.99607843, 0.9019608, 0.60784316, 1)
+theme_override_font_sizes/font_size = 26
 text = "$---"
 horizontal_alignment = 1
 
@@ -41,9 +94,16 @@ size_flags_vertical = 3
 theme_override_constants/separation = 6
 
 [node name="Tower_Alpha" type="Button" parent="Margin/VBoxContainer/Buttons" unique_id=2023251481]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_pressed")
 text = "Tower Alpha"
 clip_text = true
 script = ExtResource("1_5208a")
@@ -51,9 +111,16 @@ tower_name = "Tower Alpha"
 tower_scene = ExtResource("2_vh8x8")
 
 [node name="Tower_Bravo" type="Button" parent="Margin/VBoxContainer/Buttons" unique_id=1678942403]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_pressed")
 text = "Tower Bravo"
 clip_text = true
 script = ExtResource("1_5208a")
@@ -62,9 +129,16 @@ tower_cost = 150
 tower_scene = ExtResource("2_vh8x8")
 
 [node name="Tower_Charlie" type="Button" parent="Margin/VBoxContainer/Buttons" unique_id=653852955]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_pressed")
 text = "Tower Charlie"
 clip_text = true
 script = ExtResource("1_5208a")

@@ -70,13 +70,67 @@ func _build_shared_option_buttons() -> void:
         button.tower_id = str(option["id"])
         button.tower_name = str(option["name"])
         button.tower_cost = int(option["cost"])
-        button.custom_minimum_size = Vector2(220, 72)
+        button.custom_minimum_size = Vector2(220, 86)
         button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         button.size_flags_vertical = Control.SIZE_EXPAND_FILL
         button.clip_text = true
         button.focus_mode = Control.FOCUS_NONE
+        button.add_theme_color_override("font_color", Color(0.972549, 0.9764706, 0.95686275, 1.0))
+        button.add_theme_font_size_override("font_size", 16)
+        button.add_theme_stylebox_override("normal", _make_button_style_normal())
+        button.add_theme_stylebox_override("hover", _make_button_style_hover())
+        button.add_theme_stylebox_override("pressed", _make_button_style_pressed())
+        button.add_theme_stylebox_override("focus", _make_button_style_hover())
+        button.add_theme_stylebox_override("disabled", _make_button_style_pressed())
         options_container.add_child(button)
         option_buttons_by_tower_id[button.tower_id] = button
+
+func _make_button_style_normal() -> StyleBoxFlat:
+    var style := StyleBoxFlat.new()
+    style.bg_color = Color(0.18431373, 0.25882354, 0.16470589, 0.98)
+    style.border_width_left = 2
+    style.border_width_top = 2
+    style.border_width_right = 2
+    style.border_width_bottom = 2
+    style.border_color = Color(0.5921569, 0.77254903, 0.5294118, 0.95)
+    style.corner_radius_top_left = 8
+    style.corner_radius_top_right = 8
+    style.corner_radius_bottom_right = 8
+    style.corner_radius_bottom_left = 8
+    return style
+
+func _make_button_style_hover() -> StyleBoxFlat:
+    var style := StyleBoxFlat.new()
+    style.bg_color = Color(0.2627451, 0.36078432, 0.23529412, 0.98)
+    style.border_width_left = 2
+    style.border_width_top = 2
+    style.border_width_right = 2
+    style.border_width_bottom = 2
+    style.border_color = Color(0.7176471, 0.85882354, 0.6627451, 1.0)
+    style.corner_radius_top_left = 8
+    style.corner_radius_top_right = 8
+    style.corner_radius_bottom_right = 8
+    style.corner_radius_bottom_left = 8
+    return style
+
+func _make_button_style_pressed() -> StyleBoxFlat:
+    var style := StyleBoxFlat.new()
+    style.bg_color = Color(0.14901961, 0.20392157, 0.13333334, 0.98)
+    style.border_width_left = 2
+    style.border_width_top = 2
+    style.border_width_right = 2
+    style.border_width_bottom = 2
+    style.border_color = Color(0.46666667, 0.6392157, 0.43529412, 0.95)
+    style.corner_radius_top_left = 8
+    style.corner_radius_top_right = 8
+    style.corner_radius_bottom_right = 8
+    style.corner_radius_bottom_left = 8
+    return style
+
+func _format_draft_button_text(tower_name: String, tower_cost: int, owner_tag: String = "") -> String:
+    if owner_tag.is_empty():
+        return "%s\n$%d" % [tower_name, tower_cost]
+    return "%s\n$%d  [%s]" % [tower_name, tower_cost, owner_tag]
 
 func on_draft_option_interact(player_id: int, tower_id: String) -> void:
     if player_id < 1 or player_id > 2:
@@ -123,13 +177,13 @@ func _refresh_status_and_buttons() -> void:
         button.button_pressed = selection_owner != 0
         if selection_owner == 1:
             button.modulate = P1_COLOR
-            button.text = "%s ($%d) [P1]" % [button.tower_name, button.tower_cost]
+            button.text = _format_draft_button_text(button.tower_name, button.tower_cost, "P1")
         elif selection_owner == 2:
             button.modulate = P2_COLOR
-            button.text = "%s ($%d) [P2]" % [button.tower_name, button.tower_cost]
+            button.text = _format_draft_button_text(button.tower_name, button.tower_cost, "P2")
         else:
             button.modulate = UNCLAIMED_COLOR
-            button.text = "%s ($%d)" % [button.tower_name, button.tower_cost]
+            button.text = _format_draft_button_text(button.tower_name, button.tower_cost)
 
 func _both_players_ready() -> bool:
     var p1_ready: bool = selected_ids_by_player.get(1, []).size() == _max_picks_for_player(1)

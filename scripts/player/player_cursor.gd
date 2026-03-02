@@ -4,6 +4,9 @@ class_name PlayerCursor
 @export var player_id: int = 1
 @export var move_speed: float = 700.0
 @export var screen_margin: float = 0.0
+@export var ui_interact_tolerance_px: float = 14.0
+@export var tower_interact_tolerance_px: float = 18.0
+@export var block_track_placement: bool = true
 
 var hovered_tower: Node = null
 var hovered_ui: Control = null
@@ -11,9 +14,6 @@ var pending_tower_scene: PackedScene = null
 var pending_tower_name := ""
 var pending_tower_cost := 0
 var pending_tower_preview: Node = null
-
-#signal for upgrade panel
-signal tower_cleared(player_id: int)
 
 func _ready() -> void:
   add_to_group("player_cursor")
@@ -55,20 +55,29 @@ func _update_hovered_tower() -> void:
   if world == null:
     return
 
-  var query := PhysicsPointQueryParameters2D.new()
-  query.position = global_position
+  var query_shape := CircleShape2D.new()
+  query_shape.radius = maxf(tower_interact_tolerance_px, 1.0)
+  var query := PhysicsShapeQueryParameters2D.new()
+  query.shape = query_shape
+  query.transform = Transform2D(0.0, global_position)
   query.collide_with_areas = true
   query.collide_with_bodies = true
 
-  var hits := world.direct_space_state.intersect_point(query, 16)
+  var hits := world.direct_space_state.intersect_shape(query, 32)
+  var best_distance_sq := INF
   for hit in hits:
     var collider: Node = hit.get("collider") as Node
     if collider == null or not collider.is_in_group("tower_select_area"):
       continue
     var tower := _resolve_tower_from_node(collider)
     if tower != null:
-      hovered_tower = tower
-      return
+      var tower_2d := tower as Node2D
+      var dist_sq := INF
+      if tower_2d != null:
+        dist_sq = tower_2d.global_position.distance_squared_to(global_position)
+      if hovered_tower == null or dist_sq < best_distance_sq:
+        hovered_tower = tower
+        best_distance_sq = dist_sq
 
 func attempt_interact() -> void:
   var manager := _find_interaction_manager()
@@ -107,6 +116,7 @@ func _find_interaction_manager() -> Node:
 
 func _pick_ui_at_screen_pos(screen_pos: Vector2) -> Control:
   var picked: Control = null
+  var best_distance := INF
   var current_scene := get_tree().current_scene
   if current_scene == null:
     return null
@@ -118,18 +128,26 @@ func _pick_ui_at_screen_pos(screen_pos: Vector2) -> Control:
       continue
     if not _is_actionable_ui(control):
       continue
-    if not control.visible:
+    if not control.is_visible_in_tree():
       continue
     if control.mouse_filter == Control.MOUSE_FILTER_IGNORE:
       continue
-    if not control.get_global_rect().has_point(screen_pos):
+    var rect := control.get_global_rect()
+    var distance_to_rect := _distance_point_to_rect(screen_pos, rect)
+    if distance_to_rect > ui_interact_tolerance_px:
       continue
 
-    # Prefer the deepest child when controls overlap.
-    if picked == null or picked.is_ancestor_of(control):
+    # Prefer nearest actionable control; if tied, prefer deeper child.
+    if picked == null or distance_to_rect < best_distance or (is_equal_approx(distance_to_rect, best_distance) and picked.is_ancestor_of(control)):
       picked = control
+      best_distance = distance_to_rect
 
   return picked
+
+func _distance_point_to_rect(point: Vector2, rect: Rect2) -> float:
+  var clamped_x := clampf(point.x, rect.position.x, rect.end.x)
+  var clamped_y := clampf(point.y, rect.position.y, rect.end.y)
+  return point.distance_to(Vector2(clamped_x, clamped_y))
 
 func _is_actionable_ui(control: Control) -> bool:
   if control.has_method("player_interact"):
@@ -162,10 +180,10 @@ func _clear_selected_towers() -> void:
   for tower in get_tree().get_nodes_in_group("tower"):
     if tower.has_method("hide_selection_range_for_player"):
       tower.hide_selection_range_for_player(player_id)
-      emit_signal("tower_cleared", player_id)
+      GameManager.emit_tower_cleared(player_id)
     elif tower.has_method("hide_selection_range"):
       tower.hide_selection_range()
-      emit_signal("tower_cleared", player_id)
+      GameManager.emit_tower_cleared(player_id)
 
 func queue_tower_purchase(tower_scene: PackedScene, tower_name: String, tower_cost: int) -> void:
   if tower_scene == null:
@@ -203,6 +221,7 @@ func place_pending_tower() -> bool:
   pending_tower_scene = null
   pending_tower_name = ""
   pending_tower_cost = 0
+  
   return true
 
 func _cancel_pending_tower():
@@ -227,6 +246,9 @@ func _resolve_tower_parent() -> Node:
 
 
 func _can_place_pending_tower_at_cursor() -> bool:
+  if block_track_placement and _is_position_on_track(global_position):
+    return false
+
   if pending_tower_preview == null:
     return true
 
@@ -256,6 +278,28 @@ func _can_place_pending_tower_at_cursor() -> bool:
       return false
 
   return true
+
+func _is_position_on_track(world_position: Vector2) -> bool:
+  var current_scene := get_tree().current_scene
+  if current_scene == null:
+    return false
+
+  var layers: Array = current_scene.find_children("*", "TileMapLayer", true, false)
+  for node in layers:
+    var layer := node as TileMapLayer
+    if layer == null:
+      continue
+
+    var layer_name := String(layer.name).to_lower()
+    if not (layer_name.contains("path") or layer_name.contains("track")):
+      continue
+
+    var local_pos := layer.to_local(world_position)
+    var cell := layer.local_to_map(local_pos)
+    if layer.get_cell_source_id(cell) != -1:
+      return true
+
+  return false
 
 func _create_pending_tower_preview() -> void:
   if pending_tower_scene == null:
