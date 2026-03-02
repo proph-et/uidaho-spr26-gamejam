@@ -47,20 +47,20 @@ func _process(_delta: float) -> void:
         if not _can_player_join_in_current_context(player_id):
             continue
 
-        var join_action: String = _resolved_join_action(player_id)
+        var join_actions: Array[String] = _resolved_join_actions(player_id)
         var leave_action: String = _resolved_leave_action(player_id)
         var require_hold: bool = _requires_hold(player_id)
         var allow_leave: bool = _can_player_leave_in_current_context(player_id)
 
         if require_hold:
-            _update_join_hold(player_id, join_action, _delta)
+            _update_join_hold(player_id, join_actions, _delta)
             if allow_leave:
                 _update_leave_hold(player_id, leave_action, _delta)
             else:
                 leave_hold_time[player_id] = 0.0
                 leave_hold_fired[player_id] = false
         else:
-            if join_action != "" and Input.is_action_just_pressed(join_action):
+            if _is_any_action_just_pressed(join_actions):
                 spawn_cursor(player_id)
                 continue
             if allow_leave and leave_action != "" and Input.is_action_just_pressed(leave_action):
@@ -99,17 +99,17 @@ func despawn_cursor(player_id: int) -> void:
     GameManager.set_player_active(player_id, false)
     player_left.emit(player_id)
 
-func _resolved_join_action(player_id: int) -> String:
+func _resolved_join_actions(player_id: int) -> Array[String]:
+    var actions: Array[String] = []
     var join_action: String = "player_%d_%s" % [player_id, join_action_suffix]
     if InputMap.has_action(join_action):
-        return join_action
+        actions.append(join_action)
 
-    if join_fallback_suffix == "":
-        return ""
-    var fallback_action: String = "player_%d_%s" % [player_id, join_fallback_suffix]
-    if InputMap.has_action(fallback_action):
-        return fallback_action
-    return ""
+    if join_fallback_suffix != "":
+        var fallback_action: String = "player_%d_%s" % [player_id, join_fallback_suffix]
+        if InputMap.has_action(fallback_action) and fallback_action != join_action:
+            actions.append(fallback_action)
+    return actions
 
 func _resolved_leave_action(player_id: int) -> String:
     var leave_action: String = "player_%d_%s" % [player_id, leave_action_suffix]
@@ -147,7 +147,7 @@ func _requires_hold(player_id: int) -> bool:
             return true
     return false
 
-func _update_join_hold(player_id: int, action: String, delta: float) -> void:
+func _update_join_hold(player_id: int, actions: Array[String], delta: float) -> void:
     if cursors.has(player_id):
         join_hold_time[player_id] = 0.0
         join_hold_fired[player_id] = false
@@ -156,10 +156,10 @@ func _update_join_hold(player_id: int, action: String, delta: float) -> void:
         join_hold_time[player_id] = 0.0
         join_hold_fired[player_id] = false
         return
-    if action == "":
+    if actions.is_empty():
         return
 
-    if Input.is_action_pressed(action):
+    if _is_any_action_pressed(actions):
         var held: float = float(join_hold_time.get(player_id, 0.0)) + delta
         join_hold_time[player_id] = held
         var fired: bool = bool(join_hold_fired.get(player_id, false))
@@ -219,3 +219,15 @@ func _can_player_leave_in_current_context(player_id: int) -> bool:
     if player_id == 2:
         return false
     return true
+
+func _is_any_action_pressed(actions: Array[String]) -> bool:
+    for action_name in actions:
+        if Input.is_action_pressed(action_name):
+            return true
+    return false
+
+func _is_any_action_just_pressed(actions: Array[String]) -> bool:
+    for action_name in actions:
+        if Input.is_action_just_pressed(action_name):
+            return true
+    return false

@@ -39,15 +39,42 @@ corner_radius_bottom_left = 6
 [node name="InGameHud" type="CanvasLayer" unique_id=1899128639]
 script = ExtResource("2_4wl7y")
 
+[node name="RoundCounterContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 10
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 12.0
+offset_right = 110.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_health_panel")
+
+[node name="RoundCounterMargin" type="MarginContainer" parent="RoundCounterContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 6
+
+[node name="RoundLabel" type="Label" parent="RoundCounterContainer/RoundCounterMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.99607843, 0.9019608, 0.60784316, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+text = "Round 1"
+
 [node name="BaseHealthContainer" type="PanelContainer" parent="."]
 unique_name_in_owner = true
 anchors_preset = 10
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -200.0
-offset_top = 12.0
+offset_top = 48.0
 offset_right = 200.0
-offset_bottom = 72.0
+offset_bottom = 108.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_health_panel")
 

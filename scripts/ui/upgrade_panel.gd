@@ -24,7 +24,10 @@ func setup(tower) -> void:
     current_tower = tower
     show()
 
-    label_title.text = tower.name
+    if tower != null and tower.has_method("get_display_name"):
+        label_title.text = str(tower.get_display_name())
+    else:
+        label_title.text = tower.name
 
     button_upgrade_1.setup(tower, 1)
     button_upgrade_2.setup(tower, 2)

@@ -17,6 +17,7 @@ var range_upgrade_points := 0
 var towers_in_range: Array = []
 
 func _ready() -> void:
+    tower_display_name = "Buff Tower"
     can_attack = false
     attack_range = buff_range
     upgrade_cost1 = [300, 480, 669, 0]

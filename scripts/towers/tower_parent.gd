@@ -13,6 +13,7 @@ enum TargettingMode {
         attack_range = maxf(value, 0.0)
         _update_attack_collision_size()
 @export var cost: int = 50
+@export var tower_display_name: String = "Tower"
 @export var target_mode: TargettingMode = TargettingMode.FURTHEST
 @export var selection_ring_color_p1: Color = Color(0.3, 1.0, 0.5, 0.9)
 @export var selection_ring_color_p2: Color = Color(0.3, 0.7, 1.0, 0.9)
@@ -294,3 +295,6 @@ func get_upgrade_name(index: int) -> String:
 #function to get current damage with mulipliers
 func get_damage() -> float:
     return damage * damage_multiplier
+
+func get_display_name() -> String:
+    return tower_display_name

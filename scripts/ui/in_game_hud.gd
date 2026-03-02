@@ -5,8 +5,10 @@ extends CanvasLayer
 @onready var p2_join_prompt: Label = get_node_or_null("%P2JoinPrompt") as Label
 @onready var base_health_bar: ProgressBar = %BaseHealthBar
 @onready var base_health_value: Label = %BaseHealthValue
+@onready var round_label: Label = %RoundLabel
 
 var cursor_spawner: CursorSpawner = null
+var wave_manager: Node = null
 var player2_joined: bool = false
 var coop_enabled: bool = true
 const TRANSFER_AMOUNT := 25
@@ -14,6 +16,7 @@ const TRANSFER_AMOUNT := 25
 func _ready() -> void:
     _apply_player_loadouts()
     _bind_base_health_ui()
+    _bind_wave_ui()
     coop_enabled = GameManager.is_player_active(2) or GameManager.get_active_player_count() >= 2
     if p2_join_prompt != null:
         p2_join_prompt.queue_free()
@@ -129,3 +132,22 @@ func _on_base_health_changed(current_health: int, max_health: int) -> void:
         base_health_bar.value = current_health
     if base_health_value != null:
         base_health_value.text = "%d / %d" % [current_health, max_health]
+
+func _bind_wave_ui() -> void:
+    if round_label == null:
+        return
+    var current_scene := get_tree().current_scene
+    if current_scene == null:
+        return
+    wave_manager = current_scene.find_child("WaveManager", true, false)
+    if wave_manager == null:
+        return
+    var wave_started_callable := Callable(self, "_on_wave_started")
+    if wave_manager.has_signal("wave_started") and not wave_manager.is_connected("wave_started", wave_started_callable):
+        wave_manager.connect("wave_started", wave_started_callable)
+    var current_wave_value := int(wave_manager.get("current_wave"))
+    _on_wave_started(maxi(current_wave_value, 1))
+
+func _on_wave_started(wave_number: int) -> void:
+    if round_label != null:
+        round_label.text = "Round %d" % maxi(wave_number, 1)

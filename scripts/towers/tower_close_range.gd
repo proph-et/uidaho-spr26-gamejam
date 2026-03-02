@@ -11,6 +11,7 @@ var cooldown_upgrade_points := 0
 var range_upgrade_points := 0
 
 func _ready() -> void:
+    tower_display_name = "Close Range Tower"
     damage = 30.0
     attack_cooldown_s = 0.5
     attack_range = 80.0

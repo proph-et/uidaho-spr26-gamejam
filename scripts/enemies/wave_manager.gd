@@ -1,5 +1,7 @@
 extends Node2D
 
+signal wave_started(wave_number: int)
+
 @export var enemy_prefab: PackedScene
 @export var armored_enemy_prefab: PackedScene
 @export var boss_enemy_prefab: PackedScene
@@ -27,6 +29,7 @@ func start_wave():
     wave_in_progress = true
     current_wave += 1
     print("current wave is: ", current_wave)
+    wave_started.emit(current_wave)
     
     enemies_to_spawn = int(log(current_wave) * spawn_bonus + 3)
     

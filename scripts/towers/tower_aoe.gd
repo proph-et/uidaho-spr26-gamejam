@@ -11,6 +11,7 @@ var cooldown_upgrade_points := 0
 var range_upgrade_points := 0
 
 func _ready() -> void:
+    tower_display_name = "AOE Tower"
     damage = 10.0
     attack_cooldown_s = 1.5
     attack_range = 40.0

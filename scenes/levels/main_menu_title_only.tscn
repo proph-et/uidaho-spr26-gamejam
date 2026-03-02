@@ -1,8 +1,8 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bx2wfwo58ndxd"]
 
 [ext_resource type="Texture2D" uid="uid://cs80qkdpkhlem" path="res://assets/art/tittle_screen/vector-prehistoric-seamless-jungle-background-600nw-2436404503.webp" id="1_bg"]
 
-[node name="MainMenuTitleOnly" type="Control"]
+[node name="MainMenuTitleOnly" type="Control" unique_id=865447152]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,7 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackgroundImage" type="TextureRect" parent="."]
+[node name="BackgroundImage" type="TextureRect" parent="." unique_id=6049145]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,7 +20,7 @@ grow_vertical = 2
 texture = ExtResource("1_bg")
 stretch_mode = 6
 
-[node name="DarkOverlay" type="ColorRect" parent="."]
+[node name="DarkOverlay" type="ColorRect" parent="." unique_id=1471393858]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +29,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.019607844, 0.050980393, 0.027450982, 0.45)
 
-[node name="TitleWrap" type="CenterContainer" parent="."]
+[node name="TitleWrap" type="CenterContainer" parent="." unique_id=1566107165]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,7 +37,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleLabel" type="Label" parent="TitleWrap"]
+[node name="TitleLabel" type="Label" parent="TitleWrap" unique_id=221749863]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.99607843, 0.9019608, 0.60784316, 1)
 theme_override_font_sizes/font_size = 64

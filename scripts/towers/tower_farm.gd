@@ -16,6 +16,7 @@ var elapsed_time := 0.0
 var round_active := false
 
 func _ready() -> void:
+    tower_display_name = "Farm Tower"
     can_attack = false
     attack_range = 1
     upgrade_cost1 = [200, 350, 567, 0]
