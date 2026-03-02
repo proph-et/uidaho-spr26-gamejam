@@ -155,6 +155,10 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_keln3")
 theme_override_styles/focus = SubResource("StyleBoxFlat_fkd6t")
 text = "Start Game"
 
+[node name="ButtonSpacer" type="Control" parent="MenuPanel/MenuMargin/VBoxContainer" unique_id=987241553]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+
 [node name="Quit" type="Button" parent="MenuPanel/MenuMargin/VBoxContainer" unique_id=1245839604]
 custom_minimum_size = Vector2(0, 44)
 layout_mode = 2

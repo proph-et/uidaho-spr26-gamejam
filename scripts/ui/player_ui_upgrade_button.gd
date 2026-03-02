@@ -60,3 +60,9 @@ func _update_state() -> void:
     var cost = _get_cost()
     var prize_text = "MAX" if cost == 0 else "$" + str(cost)
     text = current_tower.get_upgrade_name(upgrade_index) + " (" + prize_text + ")"
+
+func clear() -> void:
+    current_tower = null
+    upgrade_index = 1
+    disabled = true
+    text = "Upgrade"

@@ -55,7 +55,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="ShopPanel" type="Panel" unique_id=1435174003]
-custom_minimum_size = Vector2(220, 400)
+custom_minimum_size = Vector2(240, 400)
 size_flags_horizontal = 1
 size_flags_vertical = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
@@ -94,11 +94,11 @@ size_flags_vertical = 3
 theme_override_constants/separation = 6
 
 [node name="Tower_Alpha" type="Button" parent="Margin/VBoxContainer/Buttons" unique_id=2023251481]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
@@ -111,11 +111,11 @@ tower_name = "Tower Alpha"
 tower_scene = ExtResource("2_vh8x8")
 
 [node name="Tower_Bravo" type="Button" parent="Margin/VBoxContainer/Buttons" unique_id=1678942403]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
@@ -129,11 +129,11 @@ tower_cost = 150
 tower_scene = ExtResource("2_vh8x8")
 
 [node name="Tower_Charlie" type="Button" parent="Margin/VBoxContainer/Buttons" unique_id=653852955]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")

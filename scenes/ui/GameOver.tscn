@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b3i4uhb4dgaoj"]
 
 [ext_resource type="Script" uid="uid://bg6fmcm0us21s" path="res://scripts/ui/game_over.gd" id="1_kp3qx"]
+[ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="2_vxj2h"]
+[ext_resource type="PackedScene" uid="uid://dh0cskp88pxgt" path="res://scenes/player/player_cursor.tscn" id="3_rw8em"]
 [ext_resource type="Texture2D" uid="uid://djqsvbmc0a2pl" path="res://assets/art/EndScreen/Background/Screenshot 2026-03-01 150406.png" id="2_05upv"]
 [ext_resource type="Texture2D" uid="uid://cv4nvshu6pyq5" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_prop - Tree Large.png" id="2_57v1k"]
 
@@ -56,6 +58,10 @@ corner_radius_bottom_left = 8
 
 [node name="GameOver" type="CanvasLayer" unique_id=823290231]
 script = ExtResource("1_kp3qx")
+
+[node name="CursorSpawner" parent="." unique_id=1654887177 instance=ExtResource("2_vxj2h")]
+cursor_scene = ExtResource("3_rw8em")
+cursor_parent_path = NodePath(".")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1088115851]
 anchors_preset = 15
