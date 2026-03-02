@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://duasu3wb7xpq"]
+[gd_scene format=4 uid="uid://cn5skdqkud4ob"]
 
 [ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="1_4mwvm"]
 [ext_resource type="Script" uid="uid://s8oevqo4knvd" path="res://scripts/ui/EndGameListener.gd" id="1_5nsly"]

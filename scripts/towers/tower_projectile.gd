@@ -18,6 +18,9 @@ func _ready() -> void:
   attack_cooldown_s = 0.25
   attack_range = 100.0
   target_mode = TargettingMode.CLOSEST
+  upgrade_cost1 = [130, 210, 350, 0]
+  upgrade_cost2 = [250, 333, 455, 0]
+  upgrade_cost3 = [150, 200, 400, 0]
   super._ready()
 
 func upgrade_1() -> void:
@@ -60,3 +63,13 @@ func spawn_projectile(target: Node2D) -> void:
   proj.direction = (target.global_position - global_position).normalized()
   proj.max_distance = attack_range
   get_tree().current_scene.add_child(proj)
+
+#get cost
+func get_upgrade_1_cost() -> int:
+    return upgrade_cost1[damage_upgrade_points]
+
+func get_upgrade_2_cost() -> int:
+    return upgrade_cost1[cooldown_upgrade_points]
+
+func get_upgrade_3_cost() -> int:
+    return upgrade_cost1[range_upgrade_points]
