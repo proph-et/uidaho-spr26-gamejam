@@ -13,12 +13,17 @@ var time_since_last_damage: float = 0.0
 @export var damage_delay: float = 3.0
 @export var damage_increase: float = 50.0
 
+@onready var animated_sprite = $AnimatedSprite2D
+
 func _ready():
   health = max_health
   armor_health = armor
   $EnemyHealthBar.max_value = max_health
   if has_node("ArmorBar"):
     $ArmorBar.max_value = armor
+    
+func _process(delta: float) -> void:
+  animated_sprite.play("walk")
     
 func _physics_process(delta: float) -> void:
   time_since_last_damage += delta
