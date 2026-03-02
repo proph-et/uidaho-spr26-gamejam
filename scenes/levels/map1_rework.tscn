@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cn5skdqkud4ob"]
+[gd_scene format=4 uid="uid://duasu3wb7xpq"]
 
 [ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="1_4mwvm"]
 [ext_resource type="Script" path="res://scripts/ui/EndGameListener.gd" id="1_5nsly"]
@@ -125,3 +125,4 @@ curve = SubResource("Curve2D_3ucpb")
 boss_enemy_prefab = ExtResource("23_3ucpb")
 
 [node name="CanvasLayer" parent="." unique_id=1393540766 instance=ExtResource("22_ie2i3")]
+visible = false
