@@ -3,7 +3,7 @@ class_name FarmTower
 
 #base values
 @export var base_value := 10
-@export var base_spawn_cooldown := 10.0
+@export var base_spawn_cooldown := 5.0
 
 #max upgrades
 const MAX_VALUE_UPGRADE := 3
@@ -12,38 +12,38 @@ const MAX_COOLDOWN_UPGRADE := 3
 var value_upgrade_points := 0
 var cooldown_upgrade_points := 0
 var stored_value := 0
-var timer: Timer
+var elapsed_time := 0.0
+var round_active := false
 
 func _ready() -> void:
     can_attack = false
+    attack_range = 0
+    upgrade_cost1 = [200, 350, 567, 0]
+    upgrade_cost2 = [300, 420, 670, 0]
     super._ready()
     add_to_group("farms")
-    _setup_spawn_timer()
 
-func _setup_spawn_timer() -> void:
-    timer = Timer.new()
-    timer.wait_time = get_current_cooldown()
-    timer.one_shot = false
-    timer.timeout.connect(_on_timer_timeout)
-    add_child(timer)
 
-# how do the tower get the information that the round has started with get_tree in the round/wave manager
-func on_round_start():
-    timer.wait_time = get_current_cooldown()
-    timer.start()
+func _process(delta: float) -> void:
+    if round_active:
+        elapsed_time += delta
 
-func on_round_end():
-    timer.stop()
+func on_round_start() -> void:
+    elapsed_time = 0
+    round_active = true
+    print("Farm round started")
+
+func on_round_end() -> void:
+    round_active = false
+    stored_value = get_current_value()
     collect()
-
-func _on_timer_timeout():
-    stored_value += get_current_value()
+    elapsed_time = 0
 
 func get_current_value() -> int:
-    return base_value + value_upgrade_points * 5
+    return int((elapsed_time / get_current_cooldown()) * (base_value + value_upgrade_points * 5))
 
 func get_current_cooldown() -> float:
-    return base_spawn_cooldown - cooldown_upgrade_points * 1.8
+    return base_spawn_cooldown - cooldown_upgrade_points * 0.6
 
 func collect():
     if stored_value <= 0:
@@ -71,11 +71,15 @@ func can_upgrade_1() -> bool:
 func can_upgrade_2() -> bool:
     return cooldown_upgrade_points < MAX_COOLDOWN_UPGRADE
 
-func get_upgrade_1_name() -> String:
-    return "Value"
+func get_upgrade_name(index: int) -> String:
+  match index:
+    1: return "Value"
+    2: return "Cooldown"
+  return ""
 
-func get_upgrade_2_name() -> String:
-    return "Cooldown"
+#get cost
+func get_upgrade_1_cost() -> int:
+    return upgrade_cost1[value_upgrade_points]
 
-func get_upgrade_3_name() -> String:
-    return ""
+func get_upgrade_2_cost() -> int:
+    return upgrade_cost1[cooldown_upgrade_points]

@@ -118,7 +118,7 @@ func _pick_ui_at_screen_pos(screen_pos: Vector2) -> Control:
 			continue
 		if not _is_actionable_ui(control):
 			continue
-		if not control.visible:
+		if not control.is_visible_in_tree():
 			continue
 		if control.mouse_filter == Control.MOUSE_FILTER_IGNORE:
 			continue
@@ -162,10 +162,10 @@ func _clear_selected_towers() -> void:
 	for tower in get_tree().get_nodes_in_group("tower"):
 		if tower.has_method("hide_selection_range_for_player"):
 			tower.hide_selection_range_for_player(player_id)
-			emit_signal("tower_cleared", player_id)
+			GameManager.emit_tower_cleared(player_id)
 		elif tower.has_method("hide_selection_range"):
 			tower.hide_selection_range()
-			emit_signal("tower_cleared", player_id)
+			GameManager.emit_tower_cleared(player_id)
 
 func queue_tower_purchase(tower_scene: PackedScene, tower_name: String, tower_cost: int) -> void:
 	if tower_scene == null:
@@ -203,6 +203,7 @@ func place_pending_tower() -> bool:
 	pending_tower_scene = null
 	pending_tower_name = ""
 	pending_tower_cost = 0
+	
 	return true
 
 func _cancel_pending_tower():

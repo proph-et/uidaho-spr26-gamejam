@@ -75,8 +75,57 @@ func _build_shared_option_buttons() -> void:
         button.size_flags_vertical = Control.SIZE_EXPAND_FILL
         button.clip_text = true
         button.focus_mode = Control.FOCUS_NONE
+        button.add_theme_color_override("font_color", Color(0.972549, 0.9764706, 0.95686275, 1.0))
+        button.add_theme_font_size_override("font_size", 18)
+        button.add_theme_stylebox_override("normal", _make_button_style_normal())
+        button.add_theme_stylebox_override("hover", _make_button_style_hover())
+        button.add_theme_stylebox_override("pressed", _make_button_style_pressed())
+        button.add_theme_stylebox_override("focus", _make_button_style_hover())
+        button.add_theme_stylebox_override("disabled", _make_button_style_pressed())
         options_container.add_child(button)
         option_buttons_by_tower_id[button.tower_id] = button
+
+func _make_button_style_normal() -> StyleBoxFlat:
+    var style := StyleBoxFlat.new()
+    style.bg_color = Color(0.18431373, 0.25882354, 0.16470589, 0.98)
+    style.border_width_left = 2
+    style.border_width_top = 2
+    style.border_width_right = 2
+    style.border_width_bottom = 2
+    style.border_color = Color(0.5921569, 0.77254903, 0.5294118, 0.95)
+    style.corner_radius_top_left = 8
+    style.corner_radius_top_right = 8
+    style.corner_radius_bottom_right = 8
+    style.corner_radius_bottom_left = 8
+    return style
+
+func _make_button_style_hover() -> StyleBoxFlat:
+    var style := StyleBoxFlat.new()
+    style.bg_color = Color(0.2627451, 0.36078432, 0.23529412, 0.98)
+    style.border_width_left = 2
+    style.border_width_top = 2
+    style.border_width_right = 2
+    style.border_width_bottom = 2
+    style.border_color = Color(0.7176471, 0.85882354, 0.6627451, 1.0)
+    style.corner_radius_top_left = 8
+    style.corner_radius_top_right = 8
+    style.corner_radius_bottom_right = 8
+    style.corner_radius_bottom_left = 8
+    return style
+
+func _make_button_style_pressed() -> StyleBoxFlat:
+    var style := StyleBoxFlat.new()
+    style.bg_color = Color(0.14901961, 0.20392157, 0.13333334, 0.98)
+    style.border_width_left = 2
+    style.border_width_top = 2
+    style.border_width_right = 2
+    style.border_width_bottom = 2
+    style.border_color = Color(0.46666667, 0.6392157, 0.43529412, 0.95)
+    style.corner_radius_top_left = 8
+    style.corner_radius_top_right = 8
+    style.corner_radius_bottom_right = 8
+    style.corner_radius_bottom_left = 8
+    return style
 
 func on_draft_option_interact(player_id: int, tower_id: String) -> void:
     if player_id < 1 or player_id > 2:

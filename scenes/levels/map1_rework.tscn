@@ -125,3 +125,4 @@ curve = SubResource("Curve2D_3ucpb")
 boss_enemy_prefab = ExtResource("23_3ucpb")
 
 [node name="CanvasLayer" parent="." unique_id=1393540766 instance=ExtResource("22_ie2i3")]
+visible = false
