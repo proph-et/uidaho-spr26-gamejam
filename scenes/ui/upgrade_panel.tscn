@@ -54,7 +54,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="UpgradePanel" type="Panel" unique_id=291128638]
-custom_minimum_size = Vector2(220, 400)
+custom_minimum_size = Vector2(200, 400)
 size_flags_horizontal = 1
 size_flags_vertical = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
@@ -94,12 +94,12 @@ size_flags_vertical = 3
 theme_override_constants/separation = 6
 
 [node name="Button_Upgrade1" type="Button" parent="Margin/VBoxContainer/Buttons"]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
@@ -111,12 +111,12 @@ script = ExtResource("2_c7c74")
 metadata/_custom_type_script = "uid://cymtlenq3enov"
 
 [node name="Button_Upgrade2" type="Button" parent="Margin/VBoxContainer/Buttons"]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
@@ -128,12 +128,12 @@ script = ExtResource("2_c7c74")
 metadata/_custom_type_script = "uid://cymtlenq3enov"
 
 [node name="Button_Upgrade3" type="Button" parent="Margin/VBoxContainer/Buttons"]
-custom_minimum_size = Vector2(0, 44)
+custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")

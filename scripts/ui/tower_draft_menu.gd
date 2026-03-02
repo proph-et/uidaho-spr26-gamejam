@@ -70,13 +70,13 @@ func _build_shared_option_buttons() -> void:
         button.tower_id = str(option["id"])
         button.tower_name = str(option["name"])
         button.tower_cost = int(option["cost"])
-        button.custom_minimum_size = Vector2(220, 72)
+        button.custom_minimum_size = Vector2(220, 86)
         button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
         button.size_flags_vertical = Control.SIZE_EXPAND_FILL
         button.clip_text = true
         button.focus_mode = Control.FOCUS_NONE
         button.add_theme_color_override("font_color", Color(0.972549, 0.9764706, 0.95686275, 1.0))
-        button.add_theme_font_size_override("font_size", 18)
+        button.add_theme_font_size_override("font_size", 16)
         button.add_theme_stylebox_override("normal", _make_button_style_normal())
         button.add_theme_stylebox_override("hover", _make_button_style_hover())
         button.add_theme_stylebox_override("pressed", _make_button_style_pressed())
@@ -127,6 +127,11 @@ func _make_button_style_pressed() -> StyleBoxFlat:
     style.corner_radius_bottom_left = 8
     return style
 
+func _format_draft_button_text(tower_name: String, tower_cost: int, owner_tag: String = "") -> String:
+    if owner_tag.is_empty():
+        return "%s\n$%d" % [tower_name, tower_cost]
+    return "%s\n$%d  [%s]" % [tower_name, tower_cost, owner_tag]
+
 func on_draft_option_interact(player_id: int, tower_id: String) -> void:
     if player_id < 1 or player_id > 2:
         return
@@ -172,13 +177,13 @@ func _refresh_status_and_buttons() -> void:
         button.button_pressed = selection_owner != 0
         if selection_owner == 1:
             button.modulate = P1_COLOR
-            button.text = "%s ($%d) [P1]" % [button.tower_name, button.tower_cost]
+            button.text = _format_draft_button_text(button.tower_name, button.tower_cost, "P1")
         elif selection_owner == 2:
             button.modulate = P2_COLOR
-            button.text = "%s ($%d) [P2]" % [button.tower_name, button.tower_cost]
+            button.text = _format_draft_button_text(button.tower_name, button.tower_cost, "P2")
         else:
             button.modulate = UNCLAIMED_COLOR
-            button.text = "%s ($%d)" % [button.tower_name, button.tower_cost]
+            button.text = _format_draft_button_text(button.tower_name, button.tower_cost)
 
 func _both_players_ready() -> bool:
     var p1_ready: bool = selected_ids_by_player.get(1, []).size() == _max_picks_for_player(1)
