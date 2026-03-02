@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bys7vbv5vwmd1"]
+
+[ext_resource type="Texture2D" uid="uid://bnmrd54fi5uot" path="res://assets/art/map2/obstacles/tree_9.png" id="1_wp4k6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i55n7"]
+radius = 199.99998
+height = 479.99994
+
+[node name="Tree1" type="Sprite2D" unique_id=196244750]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_wp4k6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1664062020]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1911248463]
+position = Vector2(0, -39.999996)
+shape = SubResource("CapsuleShape2D_i55n7")

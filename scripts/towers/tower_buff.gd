@@ -2,7 +2,7 @@ extends TowerParent
 class_name BuffTower
 
 @export var buff_amount: float = 0.1
-@export var buff_range: float = 80.0:
+@export var buff_range: float = 40.0:
     set(value):
         buff_range = maxf(value, 0.0)
         $BuffArea/CollisionShape2D.shape.radius = buff_range
@@ -18,6 +18,7 @@ var towers_in_range: Array = []
 
 func _ready() -> void:
     can_attack = false
+    attack_range = buff_range
     upgrade_cost1 = [300, 480, 669, 0]
     upgrade_cost2 = [350, 555, 750, 0]
     super._ready()
@@ -55,6 +56,7 @@ func upgrade_2() -> void:
     if range_upgrade_points < MAX_RANGE_UPGRADE:
         range_upgrade_points += 1
         buff_range += 20
+        attack_range = buff_range
 
 func can_upgrade_1() -> bool:
     return buff_amount_upgrade_points < MAX_BUFF_AMOUNT_UPGRADE

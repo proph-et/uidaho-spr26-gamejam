@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bsomble2qbkfj"]
+
+[ext_resource type="Texture2D" uid="uid://ct64bux7dr4if" path="res://assets/art/map2/obstacles/tree_6.png" id="1_rb3xh"]
+[ext_resource type="Texture2D" uid="uid://c0fi16id7rkiu" path="res://assets/art/map2/obstacles/tree_3.png" id="2_q02nw"]
+[ext_resource type="Texture2D" uid="uid://cn3aeehjb01as" path="res://assets/art/map2/obstacles/tree_2.png" id="3_aobhh"]
+[ext_resource type="Texture2D" uid="uid://bnmrd54fi5uot" path="res://assets/art/map2/obstacles/tree_9.png" id="4_fbok0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdjba"]
+radius = 273.35364
+
+[node name="Palms" type="Sprite2D" unique_id=322186194]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_rb3xh")
+
+[node name="Tree3" type="Sprite2D" parent="." unique_id=1186446930]
+position = Vector2(-207.5, 110)
+texture = ExtResource("2_q02nw")
+
+[node name="Tree2" type="Sprite2D" parent="." unique_id=997062563]
+position = Vector2(2.499998, 170)
+texture = ExtResource("3_aobhh")
+
+[node name="Tree9" type="Sprite2D" parent="." unique_id=2144472356]
+position = Vector2(-117.5, 185)
+texture = ExtResource("4_fbok0")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1314982943]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1700203614]
+position = Vector2(-70, 126.666664)
+shape = SubResource("CircleShape2D_xdjba")

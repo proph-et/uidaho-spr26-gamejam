@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cybf36o2pv0vh"]
+
+[ext_resource type="Texture2D" uid="uid://dkqldi5pilyyd" path="res://assets/art/map2/obstacles/decor_7.png" id="1_eybi4"]
+[ext_resource type="Texture2D" uid="uid://c1wq0b2fvpvd7" path="res://assets/art/map2/obstacles/stones_6.png" id="2_okrkp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrktt"]
+size = Vector2(176.66666, 203.33331)
+
+[node name="Cave" type="Sprite2D" unique_id=2085271295]
+position = Vector2(20, 30)
+rotation = 1.5707964
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_eybi4")
+
+[node name="Stones6" type="Sprite2D" parent="." unique_id=1798399928]
+position = Vector2(6.6666718, 68.33333)
+rotation = -1.5707964
+texture = ExtResource("2_okrkp")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1272904578]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=790314820]
+position = Vector2(5.205551e-06, 60)
+shape = SubResource("RectangleShape2D_rrktt")

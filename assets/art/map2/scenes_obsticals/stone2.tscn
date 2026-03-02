@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cw3x4jy3v51cm"]
+
+[ext_resource type="Texture2D" uid="uid://c1jydnljokmxn" path="res://assets/art/map2/obstacles/stones_10.png" id="1_mxph2"]
+[ext_resource type="Texture2D" uid="uid://cht6oleb4fnqr" path="res://assets/art/map2/obstacles/stones_7.png" id="2_5poi0"]
+[ext_resource type="Texture2D" uid="uid://g21rbq86oe1g" path="res://assets/art/map2/obstacles/stones_8.png" id="3_4l645"]
+[ext_resource type="Texture2D" uid="uid://wj4lk42h6neu" path="res://assets/art/map2/obstacles/greenery_7.png" id="4_j3kop"]
+[ext_resource type="Texture2D" uid="uid://dbmc166miw11" path="res://assets/art/map2/obstacles/greenery_10.png" id="5_fkqve"]
+[ext_resource type="Texture2D" uid="uid://djty4clgbf710" path="res://assets/art/map2/obstacles/tree_4.png" id="6_aa0j8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eawyq"]
+size = Vector2(148, 121)
+
+[node name="Stone2" type="Sprite2D" unique_id=1549407554]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2075407645]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=912937986]
+position = Vector2(2, -5.5)
+shape = SubResource("RectangleShape2D_eawyq")
+
+[node name="Stones10" type="Sprite2D" parent="Area2D" unique_id=1437574090]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_mxph2")
+
+[node name="Stones7" type="Sprite2D" parent="." unique_id=411889873]
+position = Vector2(-31, -9.999985)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_5poi0")
+
+[node name="Stones8" type="Sprite2D" parent="." unique_id=571146662]
+position = Vector2(10, -13)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_4l645")
+
+[node name="Greenery7" type="Sprite2D" parent="." unique_id=785214588]
+position = Vector2(-1, -55)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_j3kop")
+
+[node name="Greenery10" type="Sprite2D" parent="." unique_id=155299897]
+position = Vector2(46, 32)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_fkqve")
+
+[node name="Tree4" type="Sprite2D" parent="." unique_id=485611685]
+position = Vector2(55, -15)
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("6_aa0j8")

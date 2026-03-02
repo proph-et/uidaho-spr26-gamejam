@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dln2qtdi7thvf"]
+
+[ext_resource type="Texture2D" uid="uid://dkqldi5pilyyd" path="res://assets/art/map2/obstacles/decor_7.png" id="1_rcry8"]
+[ext_resource type="Texture2D" uid="uid://dr2s7vvyuq2v0" path="res://assets/art/map2/obstacles/decor_2.png" id="2_fpdmr"]
+[ext_resource type="Texture2D" uid="uid://8xw680qlwrbs" path="res://assets/art/map2/obstacles/decor_6.png" id="3_vbp3o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jg2t2"]
+size = Vector2(325, 350)
+
+[node name="Camp" type="Sprite2D" unique_id=1504957242]
+position = Vector2(20, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_rcry8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=173591128]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2126552852]
+position = Vector2(-102.49995, -114.99996)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_jg2t2")
+
+[node name="Decor2" type="Sprite2D" parent="." unique_id=1910050893]
+position = Vector2(-155, -145)
+texture = ExtResource("2_fpdmr")
+
+[node name="Decor6" type="Sprite2D" parent="." unique_id=2035173866]
+position = Vector2(-145, -214.99997)
+texture = ExtResource("3_vbp3o")
