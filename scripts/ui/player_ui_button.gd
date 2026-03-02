@@ -10,6 +10,9 @@ func _ready() -> void:
   add_to_group("player_ui_interactable")
 
 func player_interact(player_id: int, cursor: PlayerCursor = null) -> void:
+  if disabled or not is_visible_in_tree():
+    return
+  print("tower name: %s button has been interacted with",tower_name)
   if allowed_player_id > 0 and player_id != allowed_player_id:
     return
 

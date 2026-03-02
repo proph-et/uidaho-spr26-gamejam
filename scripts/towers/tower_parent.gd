@@ -71,7 +71,7 @@ func _perform_attack(selected_targets: Array[Node2D]) -> void:
   # Child towers can override this for projectiles, buffs, status effects, etc.
   for target in selected_targets:
     if is_instance_valid(target) and target.has_method("take_damage"):
-        target.take_damage(damage)
+        target.take_damage(get_damage())
 
 func _select_targets() -> Array[Node2D]:
   match target_mode:
@@ -171,7 +171,7 @@ func _select_for_player(player_id: int) -> void:
   if ring != null and is_instance_valid(ring):
     ring.visible = true
   selected_tower_by_player[player_id] = self
-  emit_signal("tower_selected", self, player_id)
+  GameManager.emit_tower_selected(self, player_id)
 
 func _ensure_selection_ring_for_player(player_id: int) -> Line2D:
   var existing: Line2D = selection_rings_by_player.get(player_id) as Line2D

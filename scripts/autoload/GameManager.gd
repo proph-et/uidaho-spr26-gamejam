@@ -5,8 +5,13 @@ signal player_registered(player_id)
 signal money_transferred(from_id, to_id, amount)
 signal game_over
 
+#signal for the upgrades of towers
+signal tower_selected(tower: TowerParent, player_id: int)
+signal tower_cleared(player_id: int)
+signal shop_to_upgrade(player_id: int)
+signal upgrade_to_shop(player_id: int)
+
 const STARTING_MONEY := 650
-const BGM_STREAM: AudioStream = preload("res://assets/audio/BattleLoop2.ogg")
 
 var player_tower_loadouts: Dictionary = {
     1: [],
@@ -20,26 +25,11 @@ var player_active_states: Dictionary = {
 var player_money := {}
 var active_players := []
 var health := 1000
-var bgm_player: AudioStreamPlayer
 
 func _ready():
-    _ensure_bgm()
     register_player(1)
     # Remove this line when you want P2 to join dynamically instead
     register_player(2)
-
-func _ensure_bgm() -> void:
-    if bgm_player != null:
-        return
-    bgm_player = AudioStreamPlayer.new()
-    bgm_player.name = "BGMPlayer"
-    bgm_player.stream = BGM_STREAM
-    bgm_player.bus = "Master"
-    bgm_player.autoplay = false
-    bgm_player.process_mode = Node.PROCESS_MODE_ALWAYS
-    add_child(bgm_player)
-    if not bgm_player.playing:
-        bgm_player.play()
 
 
 # --- Player Registration ---
@@ -140,7 +130,7 @@ func award_kill_money(base_reward: int):
     if count == 0:
         return
 
-    var share : int = int(float(base_reward) / float(count))
+    var share : int = base_reward / count
     var remainder := base_reward % count
 
     for player_id in active_players:
@@ -188,3 +178,17 @@ func end_wave():
 func start_wave():
     for tower in get_tree().get_nodes_in_group("farms"):
         tower.on_round_start()
+
+# --- Tower/UI Signal Helpers ---
+
+func emit_tower_selected(tower: TowerParent, player_id: int) -> void:
+    tower_selected.emit(tower, player_id)
+
+func emit_tower_cleared(player_id: int) -> void:
+    tower_cleared.emit(player_id)
+
+func emit_shop_to_upgrade(player_id: int) -> void:
+    shop_to_upgrade.emit(player_id)
+
+func emit_upgrade_to_shop(player_id: int) -> void:
+    upgrade_to_shop.emit(player_id)
