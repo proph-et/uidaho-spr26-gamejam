@@ -2,10 +2,74 @@
 
 [ext_resource type="Script" uid="uid://dtwa1dpb8rj4r" path="res://scripts/enemies/enemy.gd" id="1_1uxd7"]
 [ext_resource type="Script" uid="uid://chbp8evyfr0yy" path="res://scripts/enemies/character_body_2d.gd" id="2_ebbuh"]
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="3_t4s8r"]
+[ext_resource type="Texture2D" uid="uid://bk4yy3ebdtjfn" path="res://assets/art/Female adventurer/Tilesheet/character_femaleAdventurer_sheetHD.png" id="3_1uxd7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ksin"]
-size = Vector2(209, 187)
+size = Vector2(30, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebbuh"]
+atlas = ExtResource("3_1uxd7")
+region = Rect2(0, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4s8r"]
+atlas = ExtResource("3_1uxd7")
+region = Rect2(192, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brxye"]
+atlas = ExtResource("3_1uxd7")
+region = Rect2(384, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icxmi"]
+atlas = ExtResource("3_1uxd7")
+region = Rect2(576, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gop1a"]
+atlas = ExtResource("3_1uxd7")
+region = Rect2(768, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xdyk5"]
+atlas = ExtResource("3_1uxd7")
+region = Rect2(960, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcqw4"]
+atlas = ExtResource("3_1uxd7")
+region = Rect2(1152, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hn0b"]
+atlas = ExtResource("3_1uxd7")
+region = Rect2(1344, 1024, 192, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_phjtn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebbuh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4s8r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brxye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icxmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gop1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xdyk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcqw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hn0b")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Enemy" type="PathFollow2D" unique_id=1908212354]
 loop = false
@@ -19,24 +83,25 @@ armor = 100
 kill_reward = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1902807329]
-position = Vector2(41.5, -29.5)
+position = Vector2(-1, 5)
 shape = SubResource("RectangleShape2D_1ksin")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D" unique_id=86149541]
-position = Vector2(-10.5, 11.5)
-scale = Vector2(1.484375, 1.28125)
-texture = ExtResource("3_t4s8r")
-
 [node name="EnemyHealthBar" type="ProgressBar" parent="CharacterBody2D" unique_id=720242962]
-offset_left = -45.0
-offset_top = -142.0
-offset_right = 118.0
-offset_bottom = -115.0
+offset_left = -19.0
+offset_top = -38.0
+offset_right = 17.0
+offset_bottom = -28.0
 show_percentage = false
 
 [node name="ArmorBar" type="ProgressBar" parent="CharacterBody2D" unique_id=185988229]
-offset_left = -38.0
-offset_top = -182.0
-offset_right = 116.0
-offset_bottom = -155.0
+offset_left = -18.0
+offset_top = -50.0
+offset_right = 19.0
+offset_bottom = -41.0
 show_percentage = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1353201688]
+position = Vector2(0, -1.0000014)
+scale = Vector2(0.22656249, 0.21484375)
+sprite_frames = SubResource("SpriteFrames_phjtn")
+animation = &"walk"

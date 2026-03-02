@@ -14,11 +14,18 @@ func _ready() -> void:
     damage = 10.0
     attack_cooldown_s = 1.5
     attack_range = 40.0
+    melee_lunge_distance = 10.0
+    melee_lunge_duration_s = 0.12
     target_mode = TargettingMode.ALL_IN_RANGE
     upgrade_cost1 = [150, 200, 400, 0]
     upgrade_cost2 = [150, 200, 400, 0]
     upgrade_cost3 = [150, 200, 400, 0]
     super._ready()
+
+func _perform_attack(selected_targets: Array[Node2D]) -> void:
+    if not selected_targets.is_empty():
+        play_melee_lunge(selected_targets[0])
+    super._perform_attack(selected_targets)
 
 func upgrade_1() -> void:
     if damage_upgrade_points < MAX_DAMAGE_UPGRADE:

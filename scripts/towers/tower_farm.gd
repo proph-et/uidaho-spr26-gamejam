@@ -17,7 +17,7 @@ var round_active := false
 
 func _ready() -> void:
     can_attack = false
-    attack_range = 0
+    attack_range = 1
     upgrade_cost1 = [200, 350, 567, 0]
     upgrade_cost2 = [300, 420, 670, 0]
     super._ready()

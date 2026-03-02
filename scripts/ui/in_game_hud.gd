@@ -3,13 +3,17 @@ extends CanvasLayer
 @onready var player_1_shop: ShopPanel = %Player_1_Shop
 @onready var player_2_shop: ShopPanel = %Player_2_Shop
 @onready var p2_join_prompt: Label = get_node_or_null("%P2JoinPrompt") as Label
+@onready var base_health_bar: ProgressBar = %BaseHealthBar
+@onready var base_health_value: Label = %BaseHealthValue
 
 var cursor_spawner: CursorSpawner = null
 var player2_joined: bool = false
 var coop_enabled: bool = true
+const TRANSFER_AMOUNT := 25
 
 func _ready() -> void:
     _apply_player_loadouts()
+    _bind_base_health_ui()
     coop_enabled = GameManager.is_player_active(2) or GameManager.get_active_player_count() >= 2
     if p2_join_prompt != null:
         p2_join_prompt.queue_free()
@@ -19,9 +23,19 @@ func _ready() -> void:
         player_2_shop.visible = coop_enabled
     _layout_shop_panels()
     _refresh_p2_join_prompt()
+    
+    print("HUD ready, transfer amount: ", TRANSFER_AMOUNT)
 
 func _process(_delta: float) -> void:
     _refresh_p2_join_prompt()
+    
+func _input(event: InputEvent) -> void:
+    print("input received")
+    if event.is_action_pressed("player_1_send_money"):
+        GameManager.transfer_money(1, 2, TRANSFER_AMOUNT)
+    
+    if event.is_action_pressed("player_2_send_money"):
+        GameManager.transfer_money(2, 1, TRANSFER_AMOUNT)
 
 func _apply_player_loadouts() -> void:
     if player_1_shop != null:
@@ -101,3 +115,17 @@ func _layout_single_shop(shop: ShopPanel, is_left_side: bool) -> void:
         shop.anchor_right = 1.0
         shop.offset_left = -margin_x - panel_width
         shop.offset_right = -margin_x
+
+func _bind_base_health_ui() -> void:
+    if base_health_bar == null:
+        return
+    if not GameManager.base_health_changed.is_connected(_on_base_health_changed):
+        GameManager.base_health_changed.connect(_on_base_health_changed)
+    _on_base_health_changed(GameManager.health, GameManager.MAX_BASE_HEALTH)
+
+func _on_base_health_changed(current_health: int, max_health: int) -> void:
+    if base_health_bar != null:
+        base_health_bar.max_value = max_health
+        base_health_bar.value = current_health
+    if base_health_value != null:
+        base_health_value.text = "%d / %d" % [current_health, max_health]
