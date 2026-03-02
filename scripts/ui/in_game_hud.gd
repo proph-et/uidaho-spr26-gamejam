@@ -7,6 +7,7 @@ extends CanvasLayer
 var cursor_spawner: CursorSpawner = null
 var player2_joined: bool = false
 var coop_enabled: bool = true
+const TRANSFER_AMOUNT := 25
 
 func _ready() -> void:
     _apply_player_loadouts()
@@ -19,9 +20,19 @@ func _ready() -> void:
         player_2_shop.visible = coop_enabled
     _layout_shop_panels()
     _refresh_p2_join_prompt()
+    
+    print("HUD ready, transfer amount: ", TRANSFER_AMOUNT)
 
 func _process(_delta: float) -> void:
     _refresh_p2_join_prompt()
+    
+func _input(event: InputEvent) -> void:
+    print("input received")
+    if event.is_action_pressed("player_1_send_money"):
+        GameManager.transfer_money(1, 2, TRANSFER_AMOUNT)
+    
+    if event.is_action_pressed("player_2_send_money"):
+        GameManager.transfer_money(2, 1, TRANSFER_AMOUNT)
 
 func _apply_player_loadouts() -> void:
     if player_1_shop != null:

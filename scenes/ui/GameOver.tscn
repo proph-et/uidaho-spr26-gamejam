@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://b3i4uhb4dgaoj"]
 
 [ext_resource type="Script" uid="uid://bg6fmcm0us21s" path="res://scripts/ui/game_over.gd" id="1_kp3qx"]
-[ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="2_vxj2h"]
-[ext_resource type="PackedScene" uid="uid://dh0cskp88pxgt" path="res://scenes/player/player_cursor.tscn" id="3_rw8em"]
 [ext_resource type="Texture2D" uid="uid://djqsvbmc0a2pl" path="res://assets/art/EndScreen/Background/Screenshot 2026-03-01 150406.png" id="2_05upv"]
 [ext_resource type="Texture2D" uid="uid://cv4nvshu6pyq5" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_prop - Tree Large.png" id="2_57v1k"]
+[ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="2_vxj2h"]
+[ext_resource type="PackedScene" uid="uid://dh0cskp88pxgt" path="res://scenes/player/player_cursor.tscn" id="3_rw8em"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05upv"]
 bg_color = Color(0.07058824, 0.09803922, 0.07058824, 0.86)
@@ -32,18 +32,6 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4j6j"]
-bg_color = Color(0.2627451, 0.36078432, 0.23529412, 0.98)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.7176471, 0.85882354, 0.6627451, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qslb3"]
 bg_color = Color(0.14901961, 0.20392157, 0.13333334, 0.98)
 border_width_left = 2
@@ -51,6 +39,18 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.46666667, 0.6392157, 0.43529412, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4j6j"]
+bg_color = Color(0.2627451, 0.36078432, 0.23529412, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7176471, 0.85882354, 0.6627451, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -95,8 +95,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Background/CenterContainer" unique_id=897843478]
-layout_mode = 2
 custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_05upv")
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/CenterContainer/PanelContainer" unique_id=1142024298]
@@ -145,8 +145,8 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_pxa5g")
-theme_override_styles/hover = SubResource("StyleBoxFlat_e4j6j")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_qslb3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e4j6j")
 theme_override_styles/focus = SubResource("StyleBoxFlat_e4j6j")
 text = "Return to Main Menu"
 
