@@ -11,6 +11,7 @@ const MAX_PANEL_HEIGHT := 400.0
 
 @onready var money_label: Label = $Margin/VBoxContainer/MoneyLabel
 @onready var button_list: VBoxContainer = $Margin/VBoxContainer/Buttons
+@onready var button_style_template: PlayerUIButton = $Margin/VBoxContainer/Buttons/Tower_Alpha
 
 func _ready() -> void:
   _apply_player_ownership_to_buttons()
@@ -68,7 +69,18 @@ func _ensure_button_count(required_count: int) -> void:
     button.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
     button.clip_text = true
     button.text = "Tower"
+    _apply_button_theme(button)
     button_list.add_child(button)
+
+func _apply_button_theme(button: PlayerUIButton) -> void:
+  if button == null or button_style_template == null:
+    return
+  button.add_theme_color_override("font_color", button_style_template.get_theme_color("font_color"))
+  button.add_theme_font_size_override("font_size", button_style_template.get_theme_font_size("font_size"))
+  for state in ["normal", "hover", "pressed", "focus", "disabled"]:
+    var style: StyleBox = button_style_template.get_theme_stylebox(state)
+    if style != null:
+      button.add_theme_stylebox_override(state, style.duplicate(true))
 
 func _on_money_changed(player_id: int, new_amount: int) -> void:
   if player_id == shop_player_id:

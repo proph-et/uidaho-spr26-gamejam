@@ -5,23 +5,54 @@
 [ext_resource type="Texture2D" uid="uid://cv4nvshu6pyq5" path="res://assets/art/map1/obstacles/Top-Down Simple Summer_prop - Tree Large.png" id="2_57v1k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05upv"]
-bg_color = Color(0.078431375, 0.15686275, 0.078431375, 0.4)
+bg_color = Color(0.07058824, 0.09803922, 0.07058824, 0.86)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.1764706, 0.3529412, 0.105882354, 1)
+border_color = Color(0.38039216, 0.5529412, 0.34509805, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxa5g"]
-bg_color = Color(0.2901961, 0.18431373, 0.101960786, 1)
+bg_color = Color(0.18431373, 0.25882354, 0.16470589, 0.98)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+border_color = Color(0.5921569, 0.77254903, 0.5294118, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4j6j"]
+bg_color = Color(0.2627451, 0.36078432, 0.23529412, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7176471, 0.85882354, 0.6627451, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qslb3"]
+bg_color = Color(0.14901961, 0.20392157, 0.13333334, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.46666667, 0.6392157, 0.43529412, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="GameOver" type="CanvasLayer" unique_id=823290231]
 script = ExtResource("1_kp3qx")
@@ -41,7 +72,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.15686275)
+color = Color(0.019607844, 0.050980393, 0.027450982, 0.45)
 
 [node name="CenterContainer" type="CenterContainer" parent="Background" unique_id=1624805578]
 layout_mode = 1
@@ -59,17 +90,19 @@ grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Background/CenterContainer" unique_id=897843478]
 layout_mode = 2
+custom_minimum_size = Vector2(720, 0)
 theme_override_styles/panel = SubResource("StyleBoxFlat_05upv")
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/CenterContainer/PanelContainer" unique_id=1142024298]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Background/CenterContainer/PanelContainer/MarginContainer" unique_id=349706783]
 layout_mode = 2
+theme_override_constants/separation = 10
 
 [node name="TopDecor" type="HBoxContainer" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1089523911]
 layout_mode = 2
@@ -82,7 +115,8 @@ stretch_mode = 4
 
 [node name="TittleLabel" type="Label" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TopDecor" unique_id=1272850897]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.8627451, 0.39215687, 1)
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.99607843, 0.9019608, 0.60784316, 1)
 theme_override_font_sizes/font_size = 48
 text = "GAME OVER"
 horizontal_alignment = 1
@@ -96,21 +130,18 @@ stretch_mode = 4
 [node name="HSeparator" type="HSeparator" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1142782814]
 layout_mode = 2
 
-[node name="SubtittleLabel" type="Label" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1930577113]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
-theme_override_font_sizes/font_size = 18
-text = "Your Base Has  Fallen..."
-horizontal_alignment = 1
-
 [node name="RockDecor" type="TextureRect" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2017908870]
 layout_mode = 2
 
 [node name="MainMenuButton" type="Button" parent="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1517800039]
+custom_minimum_size = Vector2(0, 46)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.8627451, 0.39215687, 1)
-theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_pxa5g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_e4j6j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qslb3")
+theme_override_styles/focus = SubResource("StyleBoxFlat_e4j6j")
 text = "Return to Main Menu"
 
 [connection signal="pressed" from="Background/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
