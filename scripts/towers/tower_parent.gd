@@ -27,9 +27,6 @@ var attack_timer: Timer
 var targets: Array[Node2D] = []
 var selection_rings_by_player: Dictionary = {}
 
-#signal for the upgrades of towers
-signal tower_selected(tower: TowerParent, player_id: int)
-
 static var selected_tower_by_player: Dictionary = {}
 
 @onready var attack_collision: CollisionShape2D = %AttackCollision
