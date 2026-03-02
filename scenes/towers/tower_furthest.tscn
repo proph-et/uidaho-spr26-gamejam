@@ -1,7 +1,7 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bw4selmwxyi3p"]
 
-[ext_resource type="Texture2D" path="res://assets/art/dino sprites/Alanqa/Fly_000.png" id="1_icon"]
-[ext_resource type="Script" path="res://scripts/towers/tower_furthest.gd" id="2_script"]
+[ext_resource type="Texture2D" uid="uid://cqvweuojsmarq" path="res://assets/art/dino sprites/Alanqa/Fly_000.png" id="1_icon"]
+[ext_resource type="Script" uid="uid://64y7aodf7jun" path="res://scripts/towers/tower_furthest.gd" id="2_script"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tower"]
 radius = 14.26556
@@ -9,24 +9,24 @@ radius = 14.26556
 [sub_resource type="CircleShape2D" id="CircleShape2D_attack"]
 radius = 50.342876
 
-[node name="TowerFurthest" type="Sprite2D"]
+[node name="TowerFurthest" type="Sprite2D" unique_id=1921729834]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("2_script")
 
-[node name="Visual" type="Sprite2D" parent="."]
-scale = Vector2(0.24, 0.24)
+[node name="Visual" type="Sprite2D" parent="." unique_id=94684687]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_icon")
 
-[node name="TowerArea" type="Area2D" parent="."]
+[node name="TowerArea" type="Area2D" parent="." unique_id=378378403]
 
-[node name="TowerCollision" type="CollisionShape2D" parent="TowerArea"]
+[node name="TowerCollision" type="CollisionShape2D" parent="TowerArea" unique_id=807675566]
 scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_tower")
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="." unique_id=1682378829]
 unique_name_in_owner = true
 
-[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea"]
+[node name="AttackCollision" type="CollisionShape2D" parent="AttackArea" unique_id=1772322521]
 unique_name_in_owner = true
 scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_attack")

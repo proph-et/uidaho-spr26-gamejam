@@ -16,6 +16,7 @@ var pending_tower_cost := 0
 var pending_tower_preview: Node = null
 
 func _ready() -> void:
+  process_mode = Node.PROCESS_MODE_ALWAYS
   add_to_group("player_cursor")
 
 func _process(delta: float) -> void:

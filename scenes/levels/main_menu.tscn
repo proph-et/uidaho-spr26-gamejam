@@ -112,9 +112,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -210.0
-offset_top = -138.0
+offset_top = -164.0
 offset_right = 270.0
-offset_bottom = 138.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_u6tcb")
@@ -153,7 +153,18 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_geflf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_fkd6t")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_keln3")
 theme_override_styles/focus = SubResource("StyleBoxFlat_fkd6t")
-text = "Start Game"
+text = "Play Grass Map"
+
+[node name="StartMap2" type="Button" parent="MenuPanel/MenuMargin/VBoxContainer"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.972549, 0.9764706, 0.95686275, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_geflf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fkd6t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_keln3")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fkd6t")
+text = "Play Sand Map"
 
 [node name="ButtonSpacer" type="Control" parent="MenuPanel/MenuMargin/VBoxContainer" unique_id=987241553]
 custom_minimum_size = Vector2(0, 14)
@@ -171,4 +182,5 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_fkd6t")
 text = "Quit"
 
 [connection signal="pressed" from="MenuPanel/MenuMargin/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MenuPanel/MenuMargin/VBoxContainer/StartMap2" to="." method="_on_start_map_2_pressed"]
 [connection signal="pressed" from="MenuPanel/MenuMargin/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

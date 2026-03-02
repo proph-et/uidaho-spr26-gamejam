@@ -15,6 +15,7 @@ signal upgrade_to_shop(player_id: int)
 const STARTING_MONEY := 650
 const MAX_BASE_HEALTH := 1000
 const BGM_STREAM: AudioStream = preload("res://assets/audio/BattleLoop2.ogg")
+const DEFAULT_MAP_SCENE_PATH := "res://scenes/levels/map1_rework.tscn"
 
 var player_tower_loadouts: Dictionary = {
     1: [],
@@ -29,6 +30,7 @@ var player_money := {}
 var active_players := []
 var health := MAX_BASE_HEALTH
 var bgm_player: AudioStreamPlayer = null
+var selected_map_scene_path: String = DEFAULT_MAP_SCENE_PATH
 
 func _ready():
     _ensure_bgm()
@@ -116,6 +118,17 @@ func get_player_tower_loadout(player_id: int) -> Array:
 func clear_tower_loadouts() -> void:
     player_tower_loadouts[1] = []
     player_tower_loadouts[2] = []
+
+func set_selected_map_scene_path(scene_path: String) -> void:
+    if scene_path.is_empty():
+        selected_map_scene_path = DEFAULT_MAP_SCENE_PATH
+        return
+    selected_map_scene_path = scene_path
+
+func get_selected_map_scene_path() -> String:
+    if selected_map_scene_path.is_empty():
+        return DEFAULT_MAP_SCENE_PATH
+    return selected_map_scene_path
 
 func set_active_player_count(count: int) -> void:
     active_player_count = clampi(count, 1, 2)

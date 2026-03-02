@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://8kambbd78vr2" path="res://assets/art/map1/scenes_obsticals/tree1.tscn" id="16_3ucpb"]
 [ext_resource type="PackedScene" uid="uid://dq7fxvycj8165" path="res://scenes/enemies/wave_manager.tscn" id="19_4mwvm"]
 [ext_resource type="PackedScene" uid="uid://b1nvt80ev864o" path="res://scenes/ui/PauseMenu.tscn" id="22_ie2i3"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/boss_enemy.tscn" id="23_3ucpb"]
+[ext_resource type="PackedScene" uid="uid://c6klg0x1mfbwx" path="res://scenes/enemies/boss_enemy.tscn" id="23_3ucpb"]
 [ext_resource type="PackedScene" uid="uid://phgjmu5nyrf" path="res://scenes/ui/upgrade_hud.tscn" id="25_vn6cl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hqcus"]
@@ -125,7 +125,7 @@ curve = SubResource("Curve2D_3ucpb")
 [node name="WaveManager" parent="." unique_id=614178672 instance=ExtResource("19_4mwvm")]
 boss_enemy_prefab = ExtResource("23_3ucpb")
 
-[node name="CanvasLayer" parent="." unique_id=1393540766 instance=ExtResource("22_ie2i3")]
+[node name="PauseMenu" parent="." unique_id=1393540766 instance=ExtResource("22_ie2i3")]
 visible = false
 
 [node name="UpgradeHud" parent="." unique_id=580524995 instance=ExtResource("25_vn6cl")]

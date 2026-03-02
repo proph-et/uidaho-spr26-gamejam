@@ -31,9 +31,9 @@ func start_wave():
     enemies_to_spawn = int(log(current_wave) * spawn_bonus + 3)
     
     #every 10th wave increase difficulty
-    if (current_wave+1)%10 == 0:
+    if (current_wave + 1) % 10 == 0:
       #this is going to INCREASE number of enemies just for this ONE ROUND
-      enemies_to_spawn =+ int(enemies_to_spawn*0.5)
+      enemies_to_spawn = + int(enemies_to_spawn * 0.5)
       spawn_bonus += 2
       
       #this is going to INCREASE enemy health
@@ -60,18 +60,17 @@ func start_wave():
     spawn_wave()
     
 func spawn_wave():
-  
   for i in enemies_to_spawn:
     spawn_enemy(enemy_prefab)
     
     #if(i+2)%double_enemy_spawn == 0:
       #spawn_enemy(enemy_prefab)
     
-    if (i+1)%armored_enemy_frequency == 0:
+    if (i + 1)%armored_enemy_frequency == 0:
       await get_tree().create_timer(time_between_spawns).timeout
       spawn_enemy(armored_enemy_prefab)
     await get_tree().create_timer(time_between_spawns).timeout
-  if ((current_wave+1)%5 == 0):
+  if ((current_wave + 1) % 7 == 0):
     spawn_enemy(boss_enemy_prefab)
     print("spawned boss")
     
