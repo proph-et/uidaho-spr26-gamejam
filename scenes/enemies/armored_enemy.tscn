@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bk4yy3ebdtjfn" path="res://assets/art/Female adventurer/Tilesheet/character_femaleAdventurer_sheetHD.png" id="3_1uxd7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ksin"]
-size = Vector2(32, 66)
+size = Vector2(30, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ebbuh"]
 atlas = ExtResource("3_1uxd7")
@@ -83,7 +83,7 @@ armor = 100
 kill_reward = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1902807329]
-position = Vector2(-1, 8)
+position = Vector2(-1, 5)
 shape = SubResource("RectangleShape2D_1ksin")
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="CharacterBody2D" unique_id=720242962]

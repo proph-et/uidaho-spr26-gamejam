@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dq26bcyi8yg42" path="res://assets/art/Male adventurer/Tilesheet/character_maleAdventurer_sheetHD.png" id="3_38ino"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ksin"]
-size = Vector2(91, 126)
+size = Vector2(29, 46)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fcftc"]
 atlas = ExtResource("3_38ino")
@@ -73,7 +73,7 @@ script = ExtResource("2_fcftc")
 max_health = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1902807329]
-position = Vector2(5.5, -2)
+position = Vector2(2.5, -1)
 shape = SubResource("RectangleShape2D_1ksin")
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="CharacterBody2D" unique_id=81909120]
