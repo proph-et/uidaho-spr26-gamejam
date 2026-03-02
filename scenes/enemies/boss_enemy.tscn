@@ -1,31 +1,34 @@
-[gd_scene format=3 uid="uid://cctydxml112sq"]
+[gd_scene format=3 uid="uid://dyk4a4clqabmo"]
 
-[ext_resource type="Script" uid="uid://dtwa1dpb8rj4r" path="res://scripts/enemies/enemy.gd" id="1_1uxd7"]
-[ext_resource type="Script" uid="uid://chbp8evyfr0yy" path="res://scripts/enemies/character_body_2d.gd" id="2_ebbuh"]
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="3_t4s8r"]
+[ext_resource type="Script" uid="uid://dtwa1dpb8rj4r" path="res://scripts/enemies/enemy.gd" id="1_1dk32"]
+[ext_resource type="Script" uid="uid://0bndvkcd1cq8" path="res://scripts/enemies/boss_character_body_2d.gd" id="2_1dk32"]
+[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="3_wm0l1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ksin"]
 size = Vector2(209, 187)
 
 [node name="Enemy" type="PathFollow2D" unique_id=1908212354]
 loop = false
-script = ExtResource("1_1uxd7")
-speed = 60.0
+script = ExtResource("1_1dk32")
+speed = 35.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1752081654 groups=["enemy"]]
-script = ExtResource("2_ebbuh")
-max_health = 150
-armor = 100
-kill_reward = 20
+script = ExtResource("2_1dk32")
+max_health = 1000
+armor = 500
+kill_reward = 150
+damage_delay = 1.0
+damage_increase = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1902807329]
 position = Vector2(41.5, -29.5)
 shape = SubResource("RectangleShape2D_1ksin")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D" unique_id=86149541]
+modulate = Color(1, 0.12156863, 0.07058824, 1)
 position = Vector2(-10.5, 11.5)
 scale = Vector2(1.484375, 1.28125)
-texture = ExtResource("3_t4s8r")
+texture = ExtResource("3_wm0l1")
 
 [node name="EnemyHealthBar" type="ProgressBar" parent="CharacterBody2D" unique_id=720242962]
 offset_left = -45.0

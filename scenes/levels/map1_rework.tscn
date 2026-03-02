@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cn5skdqkud4ob"]
 
 [ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="1_4mwvm"]
-[ext_resource type="Script" uid="uid://s8oevqo4knvd" path="res://scripts/ui/EndGameListener.gd" id="1_5nsly"]
+[ext_resource type="Script" path="res://scripts/ui/EndGameListener.gd" id="1_5nsly"]
 [ext_resource type="Texture2D" uid="uid://bdhy1k0nfn7h0" path="res://assets/art/map1/map_png/Top-Down Simple Summer_Ground 28.png" id="1_7r8ho"]
 [ext_resource type="PackedScene" uid="uid://dh0cskp88pxgt" path="res://scenes/player/player_cursor.tscn" id="2_f057x"]
 [ext_resource type="Texture2D" uid="uid://yah23kfc03bi" path="res://assets/art/map1/map_png/Top-Down Simple Summer_Ground 30.png" id="2_mx75i"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://8kambbd78vr2" path="res://assets/art/map1/scenes_obsticals/tree1.tscn" id="16_3ucpb"]
 [ext_resource type="PackedScene" uid="uid://dq7fxvycj8165" path="res://scenes/enemies/wave_manager.tscn" id="19_4mwvm"]
 [ext_resource type="PackedScene" uid="uid://b1nvt80ev864o" path="res://scenes/ui/PauseMenu.tscn" id="22_ie2i3"]
+[ext_resource type="PackedScene" uid="uid://dyk4a4clqabmo" path="res://scenes/enemies/boss_enemy.tscn" id="23_3ucpb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hqcus"]
 texture = ExtResource("1_7r8ho")
@@ -121,6 +122,7 @@ curve = SubResource("Curve2D_3ucpb")
 [node name="InGameHud" parent="." unique_id=1899128639 instance=ExtResource("8_wid5w")]
 
 [node name="WaveManager" parent="." unique_id=614178672 instance=ExtResource("19_4mwvm")]
+boss_enemy_prefab = ExtResource("23_3ucpb")
 
 [node name="CanvasLayer" parent="." unique_id=1393540766 instance=ExtResource("22_ie2i3")]
 visible = false
