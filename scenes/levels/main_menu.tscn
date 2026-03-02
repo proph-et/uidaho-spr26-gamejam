@@ -3,8 +3,39 @@
 [ext_resource type="Script" uid="uid://jhkhx1q54bel" path="res://scripts/ui/main_menu.gd" id="1_fsby3"]
 [ext_resource type="PackedScene" uid="uid://devvfy5w60kki" path="res://scenes/utils/cursor_spawner.tscn" id="2_4h5so"]
 [ext_resource type="PackedScene" uid="uid://dh0cskp88pxgt" path="res://scenes/player/player_cursor.tscn" id="3_hko4h"]
+[ext_resource type="Texture2D" uid="uid://cs80qkdpkhlem" path="res://assets/art/tittle_screen/vector-prehistoric-seamless-jungle-background-600nw-2436404503.webp" id="4_geflf"]
+[ext_resource type="AudioStream" uid="uid://neimpyyt1lb4" path="res://assets/audio/BattleLoop2.ogg" id="5_fkd6t"]
 
-[node name="MainMenu" type="Control" unique_id=1672108939]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_geflf"]
+thickness = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_geflf"]
+bg_color = Color(0.2901961, 0.18431373, 0.101960786, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.47843137, 0.32156864, 0.1882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkd6t"]
+bg_color = Color(0.2901961, 0.18431373, 0.101960786, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_keln3"]
+bg_color = Color(0.2901961, 0.18431373, 0.101960786, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="MainMenu" type="Control" unique_id=1086192796]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,10 +44,30 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fsby3")
 
-[node name="CursorSpawner" parent="." unique_name_in_owner = true instance=ExtResource("2_4h5so")]
+[node name="BackgroundImage" type="TextureRect" parent="." unique_id=928440565]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_geflf")
+stretch_mode = 6
+
+[node name="DarkOverlay" type="ColorRect" parent="." unique_id=680270311]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.12941177)
+
+[node name="CursorSpawner" parent="." unique_id=1654887177 instance=ExtResource("2_4h5so")]
 cursor_scene = ExtResource("3_hko4h")
 cursor_parent_path = NodePath(".")
-auto_spawn_player_ids = Array[int]([1])
 
 [node name="ButtonManager" type="Control" parent="." unique_id=506070875]
 layout_mode = 1
@@ -28,32 +79,59 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ButtonManager" unique_id=981513980]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=981513980]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = 8
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -48.0
-offset_top = -248.0
-offset_right = 48.0
-offset_bottom = -147.0
+anchor_bottom = 0.5
+offset_left = -280.755
+offset_top = -117.0
+offset_right = 313.245
+offset_bottom = 117.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+theme_override_constants/separation = 12
 
-[node name="Start" type="Button" parent="ButtonManager/VBoxContainer" unique_id=1568427639]
+[node name="TittleLabel" type="Label" parent="VBoxContainer" unique_id=1546684749]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8627451, 0.39215687, 1)
+theme_override_font_sizes/font_size = 64
+text = "Jurassic Stronghold"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1576136451]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxLine_geflf")
+
+[node name="Start" type="Button" parent="VBoxContainer" unique_id=1568427639]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8627451, 0.39215687, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_geflf")
 text = "Start Game"
 
-[node name="Options" type="Button" parent="ButtonManager/VBoxContainer" unique_id=1161788385]
+[node name="Options" type="Button" parent="VBoxContainer" unique_id=1161788385]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8627451, 0.39215687, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fkd6t")
 text = "Options"
 
-[node name="Quit" type="Button" parent="ButtonManager/VBoxContainer" unique_id=1245839604]
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=1245839604]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8627451, 0.39215687, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_keln3")
 text = "Quit"
 
-[connection signal="pressed" from="ButtonManager/VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="ButtonManager/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="ButtonManager/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=185141438]
+stream = ExtResource("5_fkd6t")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
