@@ -46,8 +46,15 @@ func get_current_cooldown() -> float:
     return base_spawn_cooldown - cooldown_upgrade_points * 0.6
 
 func collect():
-    GameManager.add_money(0, stored_value)
-    GameManager.add_money(1, stored_value)
+     if stored_value <= 0:
+        return
+
+    var active_player_ids: Array[int] = GameManager.get_active_players()
+    if active_player_ids.is_empty():
+        active_player_ids = [1]
+
+    for player_id in active_player_ids:
+        GameManager.add_money(player_id, stored_value)
     stored_value = 0
 
 func upgrade_1() -> void:
