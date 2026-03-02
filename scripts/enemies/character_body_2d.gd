@@ -7,6 +7,8 @@ const HIT_SFX: AudioStream = preload("res://assets/audio/olivia_parker-powerful-
 @export var armor: int = 0
 @export var kill_reward: int = 10
 
+@onready var animated_sprite = $AnimatedSprite2D
+
 var health: float
 var armor_health: float
 
@@ -16,6 +18,8 @@ func _ready():
   $EnemyHealthBar.max_value = max_health
   if has_node("ArmorBar"):
     $ArmorBar.max_value = armor
+func _process(delta: float) -> void:
+  animated_sprite.play("walk")
   
 func set_enemy_health_bar() -> void:
   $EnemyHealthBar.value = health

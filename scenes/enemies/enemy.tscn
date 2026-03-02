@@ -2,10 +2,67 @@
 
 [ext_resource type="Script" uid="uid://dtwa1dpb8rj4r" path="res://scripts/enemies/enemy.gd" id="1_38ino"]
 [ext_resource type="Script" uid="uid://chbp8evyfr0yy" path="res://scripts/enemies/character_body_2d.gd" id="2_fcftc"]
-[ext_resource type="Texture2D" uid="uid://cmsunywnrf3cr" path="res://icon.svg" id="3_lu5c6"]
+[ext_resource type="Texture2D" uid="uid://dq26bcyi8yg42" path="res://assets/art/Male adventurer/Tilesheet/character_maleAdventurer_sheetHD.png" id="3_38ino"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ksin"]
-size = Vector2(209, 187)
+size = Vector2(91, 126)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcftc"]
+atlas = ExtResource("3_38ino")
+region = Rect2(0, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu5c6"]
+atlas = ExtResource("3_38ino")
+region = Rect2(192, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nb6gf"]
+atlas = ExtResource("3_38ino")
+region = Rect2(384, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt03m"]
+atlas = ExtResource("3_38ino")
+region = Rect2(576, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7575"]
+atlas = ExtResource("3_38ino")
+region = Rect2(768, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qch6t"]
+atlas = ExtResource("3_38ino")
+region = Rect2(960, 1024, 192, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5th1"]
+atlas = ExtResource("3_38ino")
+region = Rect2(1152, 1024, 192, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tihwb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcftc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu5c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nb6gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt03m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7575")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qch6t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5th1")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Enemy" type="PathFollow2D" unique_id=1908212354]
 loop = false
@@ -16,17 +73,18 @@ script = ExtResource("2_fcftc")
 max_health = 150
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1902807329]
-position = Vector2(41.5, -29.5)
+position = Vector2(5.5, -2)
 shape = SubResource("RectangleShape2D_1ksin")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/CollisionShape2D" unique_id=86149541]
-position = Vector2(-72, 63.5)
-scale = Vector2(0.5234375, 0.46875)
-texture = ExtResource("3_lu5c6")
-
 [node name="EnemyHealthBar" type="ProgressBar" parent="CharacterBody2D" unique_id=81909120]
-offset_left = -95.0
-offset_top = -36.0
-offset_right = 31.0
-offset_bottom = -9.0
+offset_left = -56.0
+offset_top = -77.0
+offset_right = 70.0
+offset_bottom = -50.0
 show_percentage = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=1678038349]
+position = Vector2(4, -5.000002)
+scale = Vector2(0.201, 0.215)
+sprite_frames = SubResource("SpriteFrames_tihwb")
+animation = &"walk"
