@@ -17,6 +17,9 @@ enum TargettingMode {
 @export var selection_ring_color_p1: Color = Color(0.3, 1.0, 0.5, 0.9)
 @export var selection_ring_color_p2: Color = Color(0.3, 0.7, 1.0, 0.9)
 @export var selection_ring_width: float = 2.0
+@export var upgrade_cost1 = [0,0,0,0]
+@export var upgrade_cost2 = [0,0,0,0]
+@export var upgrade_cost3 = [0,0,0,0]
 
 var can_attack: bool = true
 var damage_multiplier: float = 1.0
@@ -250,15 +253,14 @@ func can_upgrade_2() -> bool:
 func can_upgrade_3() -> bool:
     return false
 
-func get_upgrade_1_name() -> String:
-    return "Damage"
-
-func get_upgrade_2_name() -> String:
-    return "Cooldown"
-
-func get_upgrade_3_name() -> String:
-    return "Range"
+func get_upgrade_name(index: int) -> String:
+  match index:
+    1: return "Damage"
+    2: return "Cooldown"
+    3: return "Range"
+  return "MAX"
 
 #function to get current damage with mulipliers
 func get_damage() -> float:
     return damage * damage_multiplier
+
