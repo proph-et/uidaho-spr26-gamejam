@@ -4,6 +4,7 @@ signal money_changed(player_id, new_amount)
 signal player_registered(player_id)
 signal money_transferred(from_id, to_id, amount)
 signal game_over
+signal base_health_changed(current_health, max_health)
 
 #signal for the upgrades of towers
 signal tower_selected(tower: TowerParent, player_id: int)
@@ -12,6 +13,7 @@ signal shop_to_upgrade(player_id: int)
 signal upgrade_to_shop(player_id: int)
 
 const STARTING_MONEY := 650
+const MAX_BASE_HEALTH := 1000
 const BGM_STREAM: AudioStream = preload("res://assets/audio/BattleLoop2.ogg")
 
 var player_tower_loadouts: Dictionary = {
@@ -25,7 +27,7 @@ var player_active_states: Dictionary = {
 }
 var player_money := {}
 var active_players := []
-var health := 1000
+var health := MAX_BASE_HEALTH
 var bgm_player: AudioStreamPlayer = null
 
 func _ready():
@@ -33,6 +35,7 @@ func _ready():
     register_player(1)
     # Remove this line when you want P2 to join dynamically instead
     register_player(2)
+    base_health_changed.emit(health, MAX_BASE_HEALTH)
 
 func _ensure_bgm() -> void:
     if bgm_player != null and is_instance_valid(bgm_player):
@@ -100,6 +103,8 @@ func take_damage(amount: int):
     print("Base health: ", health)
     if health <= 0:
         health = 0 
+    base_health_changed.emit(health, MAX_BASE_HEALTH)
+    if health <= 0:
         game_over.emit()
   
 func set_player_tower_loadout(player_id: int, towers: Array) -> void:
@@ -179,6 +184,8 @@ func reset():
     for player_id in active_players:
         player_money[player_id] = STARTING_MONEY
         money_changed.emit(player_id, player_money[player_id])
+    health = MAX_BASE_HEALTH
+    base_health_changed.emit(health, MAX_BASE_HEALTH)
 
 
 # --- Internal Helpers ---
