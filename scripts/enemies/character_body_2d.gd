@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal enemy_died(enemy, killed_by_player)
+const HIT_SFX: AudioStream = preload("res://assets/audio/olivia_parker-powerful-smack-demo-310472.mp3")
 
 @export var max_health: int = 100
 @export var armor: int = 0
@@ -22,6 +23,7 @@ func set_enemy_health_bar() -> void:
     $ArmorBar.value = armor_health
 
 func take_damage(amount: int):
+  _play_hit_sfx()
   if armor_health > 0:
     armor_health -= amount
   else:
@@ -36,3 +38,11 @@ func die(killed_by_player: bool = false):
   print("enemy died")
   enemy_died.emit(self, killed_by_player)
   get_parent().queue_free()
+
+func _play_hit_sfx() -> void:
+  var hit_player := AudioStreamPlayer2D.new()
+  hit_player.stream = HIT_SFX
+  hit_player.volume_db = -6.0
+  add_child(hit_player)
+  hit_player.finished.connect(hit_player.queue_free)
+  hit_player.play()

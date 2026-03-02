@@ -1,6 +1,6 @@
 [gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://icon.svg" id="1_icon"]
+[ext_resource type="Texture2D" path="res://assets/art/dino sprites/Baryonyx/Idle_000.png" id="1_icon"]
 [ext_resource type="Script" path="res://scripts/towers/tower_buff.gd" id="2_script"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tower"]
@@ -14,8 +14,11 @@ radius = 80.0
 
 [node name="TowerBuff" type="Sprite2D"]
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_icon")
 script = ExtResource("2_script")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.24, 0.24)
+texture = ExtResource("1_icon")
 
 [node name="TowerArea" type="Area2D" parent="."]
 

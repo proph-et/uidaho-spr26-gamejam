@@ -17,6 +17,8 @@ enum TargettingMode {
 @export var selection_ring_color_p1: Color = Color(0.3, 1.0, 0.5, 0.9)
 @export var selection_ring_color_p2: Color = Color(0.3, 0.7, 1.0, 0.9)
 @export var selection_ring_width: float = 2.0
+@export var melee_lunge_distance: float = 0.0
+@export var melee_lunge_duration_s: float = 0.12
 @export var upgrade_cost1 = [0,0,0,0]
 @export var upgrade_cost2 = [0,0,0,0]
 @export var upgrade_cost3 = [0,0,0,0]
@@ -26,6 +28,9 @@ var damage_multiplier: float = 1.0
 var attack_timer: Timer
 var targets: Array[Node2D] = []
 var selection_rings_by_player: Dictionary = {}
+var melee_visual: Node2D
+var melee_visual_rest_position: Vector2 = Vector2.ZERO
+var melee_lunge_tween: Tween
 
 static var selected_tower_by_player: Dictionary = {}
 
@@ -37,6 +42,9 @@ func _ready() -> void:
     add_to_group("tower")
     if tower_area != null:
         tower_area.add_to_group("tower_select_area")
+    melee_visual = get_node_or_null("Visual") as Node2D
+    if melee_visual != null:
+        melee_visual_rest_position = melee_visual.position
     _setup_attack_timer()
     _update_attack_collision_size()
 
@@ -69,6 +77,32 @@ func _perform_attack(selected_targets: Array[Node2D]) -> void:
   for target in selected_targets:
     if is_instance_valid(target) and target.has_method("take_damage"):
         target.take_damage(get_damage())
+
+func play_melee_lunge(target: Node2D) -> void:
+  if melee_lunge_distance <= 0.0:
+    return
+  if melee_visual == null or not is_instance_valid(melee_visual):
+    return
+  if target == null or not is_instance_valid(target):
+    return
+
+  var local_target_position := to_local(target.global_position)
+  var to_target := local_target_position - melee_visual_rest_position
+  if to_target.length_squared() <= 0.0001:
+    return
+
+  if melee_lunge_tween != null and is_instance_valid(melee_lunge_tween):
+    melee_lunge_tween.kill()
+
+  melee_visual.position = melee_visual_rest_position
+  var lunge_distance := minf(melee_lunge_distance, to_target.length() * 0.6)
+  var lunge_target := melee_visual_rest_position + to_target.normalized() * lunge_distance
+  var forward_time := maxf(melee_lunge_duration_s * 0.4, 0.01)
+  var back_time := maxf(melee_lunge_duration_s * 0.6, 0.01)
+
+  melee_lunge_tween = create_tween()
+  melee_lunge_tween.tween_property(melee_visual, "position", lunge_target, forward_time)
+  melee_lunge_tween.tween_property(melee_visual, "position", melee_visual_rest_position, back_time)
 
 func _select_targets() -> Array[Node2D]:
   match target_mode:
@@ -260,4 +294,3 @@ func get_upgrade_name(index: int) -> String:
 #function to get current damage with mulipliers
 func get_damage() -> float:
     return damage * damage_multiplier
-
