@@ -104,7 +104,7 @@ func take_damage(amount: int):
     health -= amount
     print("Base health: ", health)
     if health <= 0:
-        health = 0 
+        health = 0
     base_health_changed.emit(health, MAX_BASE_HEALTH)
     if health <= 0:
         game_over.emit()
@@ -124,6 +124,7 @@ func set_selected_map_scene_path(scene_path: String) -> void:
         selected_map_scene_path = DEFAULT_MAP_SCENE_PATH
         return
     selected_map_scene_path = scene_path
+    reset()
 
 func get_selected_map_scene_path() -> String:
     if selected_map_scene_path.is_empty():
@@ -166,7 +167,7 @@ func award_kill_money(base_reward: int):
     if count == 0:
         return
 
-    var share : int = base_reward / count
+    var share: int = base_reward / count
     var remainder := base_reward % count
 
     for player_id in active_players:
